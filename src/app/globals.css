@@ -10,3 +10,17 @@
 .title-wow {
   font-family: "Folkard", sans-serif;
 }
+
+html {
+  box-sizing: border-box;
+}
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+.container {
+  max-width: 1200px; /* Puedes ajustar el ancho máximo según tus necesidades */
+  margin: 0 auto; /* Centra el contenedor horizontalmente en la página */
+  padding: 16px; /* Agrega espaciado interno si es necesario */
+}
