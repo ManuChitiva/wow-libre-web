@@ -1,8 +1,9 @@
 "use client";
 import React, { useState } from "react";
 import "./index.css";
-import Announcement from "../information";
-import Announcement2 from "../information/index copy";
+import Announcement from "../announcement";
+import Onlyplayers from "../online-player";
+import ResourcesServer from "../resources-server";
 
 const News = () => {
   const [selectedLink, setSelectedLink] = useState("noticias");
@@ -11,9 +12,9 @@ const News = () => {
     if (selectedLink === "noticias") {
       return <Announcement />;
     } else if (selectedLink === "jugadores") {
-      return <Announcement2 />;
+      return <Onlyplayers />;
     } else if (selectedLink === "recursos") {
-      return <Announcement />;
+      return <ResourcesServer />;
     }
   };
 

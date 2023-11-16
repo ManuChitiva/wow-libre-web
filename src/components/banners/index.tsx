@@ -17,11 +17,6 @@ const banners = [
     image: "https://i.postimg.cc/ZnJ3RSch/Rectangle-6.png",
     alt: "Banner 3",
   },
-  {
-    image:
-      "https://i.postimg.cc/VvqY2WF4/HD-wallpaper-wow-knights-of-the-frozen-throne-heroes-world-of-warcraft.jpg",
-    alt: "Banner 3",
-  },
 ];
 
 const Advertising = () => {
