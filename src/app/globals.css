@@ -24,3 +24,16 @@ html {
   margin: 0 auto; /* Centra el contenedor horizontalmente en la página */
   padding: 16px; /* Agrega espaciado interno si es necesario */
 }
+
+body {
+  height: 100vh;
+}
+
+#libre {
+  color: #ff4e16;
+  font-weight: bold;
+}
+
+.register-container {
+  height: 78.6vh;
+}

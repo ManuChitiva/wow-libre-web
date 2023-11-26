@@ -1,13 +1,7 @@
-import Navbar from "@/components/navbar";
 import React from "react";
 
 const Comunity = () => {
-  return (
-    <>
-      <Navbar />
-      Comunity
-    </>
-  );
+  return <>Comunity</>;
 };
 
 export default Comunity;

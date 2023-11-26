@@ -1,4 +1,5 @@
 "use client";
+
 import React, { ChangeEvent, useEffect, useState } from "react";
 import { useUserContext } from "@/context/UserContext";
 import { ToastContainer, toast } from "react-toastify";
@@ -7,34 +8,34 @@ import { useRouter } from "next/navigation";
 import TitleRegister from "@/components/register-title";
 import PageCounter from "@/components/page-counter";
 
-const Register = () => {
+const ContactMeans = () => {
   const { user, setUser } = useUserContext(); // Obteniendo el contexto y funciones del contexto
-  const [country, setCountry] = useState("");
-  const [fecha, setFecha] = useState("");
+  const [email, setEmail] = useState("");
+  const [cellPhone, setCellPhone] = useState("");
   const router = useRouter();
 
-  const handleFechaChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setFecha(event.target.value);
+  const handleEmailChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setEmail(event.target.value);
   };
 
-  const handleCountryChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setCountry(event.target.value);
+  const handleCellPhoneChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setCellPhone(event.target.value);
   };
 
   const handleFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     // Validaciones
-    if (!country.trim()) {
-      toast.error("Por favor, ingresa un país válido.", {
+    if (!email.trim()) {
+      toast.error("Por favor, ingrese sus nombres.", {
         position: toast.POSITION.BOTTOM_LEFT,
         className: "toast-message",
       });
       return;
     }
 
-    if (!fecha) {
-      toast.error("Por favor, ingresa una fecha de nacimiento válida.", {
+    if (!cellPhone.trim()) {
+      toast.error("Por favor, ingrese sus apellidos.", {
         position: toast.POSITION.BOTTOM_LEFT,
         className: "toast-message",
       });
@@ -45,21 +46,21 @@ const Register = () => {
     if (user) {
       setUser({
         ...user,
-        country: country,
-        date_of_birth: new Date(fecha),
+        email: email,
+        cell_phone: cellPhone,
       });
     }
-    router.push("/know-you");
+    router.push("/terms-and-conditions");
+  };
+
+  const handleVolverClick = () => {
+    router.back();
   };
 
   useEffect(() => {
     if (user) {
-      setCountry(user.country || "");
-      setFecha(
-        user.date_of_birth
-          ? new Date(user.date_of_birth).toISOString().split("T")[0]
-          : ""
-      );
+      setEmail(user.email || "");
+      setCellPhone(user.cell_phone || "");
     }
   }, [setUser]);
 
@@ -68,42 +69,46 @@ const Register = () => {
       <div className="container">
         <TitleRegister
           title=" Registrarme en "
-          description="  ¡Toda la información que nos compartas en WowLibre es como el
-          ingrediente especial de tu experiencia alucinante! Cuanto más sepamos,
-          mejor podremos hacerte vivir algo realmente extraordinario. Así que,
-          ¡compártenos esos datos y prepárate para algo fuera de serie!"
+          description="Esto es lo que utilizarás cuando inicies sesión en los sitios web y aplicaciones móviles."
         />
 
         <div className="items-center pt-4">
           <form className="mt-4 flex flex-col" onSubmit={handleFormSubmit}>
-            <label htmlFor="fechaInput" className="mb-2">
-              Ingrese el pais
+            <label htmlFor="lastNameInput" className="mb-2">
+              Correo Electronico
             </label>
             <input
               className="mb-4 px-4 py-2 border rounded-md text-black"
               type="text"
-              placeholder="Ingrese el país"
-              value={country}
-              onChange={handleCountryChange}
+              placeholder="Ingrese su correo electronico"
+              value={email}
+              onChange={handleEmailChange}
             />
-            <label htmlFor="fechaInput" className="mb-2">
-              Fecha de Nacimiento
+            <label htmlFor="firstNameInput" className="mb-2">
+              (Opcional) Número de teléfono
             </label>
             <input
               className="mb-4 px-4 py-2 border rounded-md text-black"
-              type="date"
-              id="fechaInput"
-              name="fechaInput"
-              value={fecha}
-              onChange={handleFechaChange}
+              type="text"
+              placeholder="Ingrese un telefono de contacto."
+              value={cellPhone}
+              onChange={handleCellPhoneChange}
             />
 
-            <PageCounter currentSection={1} totalSections={7} />
+            <PageCounter currentSection={3} totalSections={7} />
+
             <button
               className="bg-blue-500 text-white px-3 py-2 rounded-md mt-8 "
               type="submit"
             >
               Continuar
+            </button>
+            <button
+              className="bg-blue-500 text-white px-3 py-2 rounded-md mt-8 "
+              type="button" // Asegúrate de cambiar el tipo a "button"
+              onClick={handleVolverClick} // Agrega el evento onClick
+            >
+              Volver
             </button>
             <ToastContainer />
           </form>
@@ -113,4 +118,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default ContactMeans;
