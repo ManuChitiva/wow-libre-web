@@ -35,7 +35,7 @@ const ContactMeans = () => {
       });
       return; // Evitar la redirección si los checkboxes no están activos
     }
-    router.push("/terms-and-conditions");
+    router.push("/register-password");
   };
 
   const handleVolverClick = () => {

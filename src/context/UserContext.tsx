@@ -14,6 +14,7 @@ export interface UserModel {
   cell_phone: string;
   email: string;
   password: string;
+  password_web: string;
 }
 
 const initialUserData: UserModel = {
@@ -28,6 +29,7 @@ const initialUserData: UserModel = {
   cell_phone: "",
   email: "",
   password: "",
+  password_web: "",
 };
 // Definición del contexto y sus tipos
 interface UserContextProps {
@@ -57,6 +59,7 @@ const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
     }
     return null;
   });
+
   useEffect(() => {
     console.log("User state:", user); // Agrega esta línea para verificar el estado de user
 
