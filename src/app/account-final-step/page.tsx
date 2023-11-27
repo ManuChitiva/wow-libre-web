@@ -41,9 +41,6 @@ const AccountFinalStep = () => {
     }
 
     const salt = crypto.randomBytes(32);
-    console.log("decryptPassword", decryptPassword(user?.password || ""));
-    console.log("Username", userName);
-
     const verifier = computeVerifier(
       params.trinitycore,
       Buffer.from(salt),
@@ -51,14 +48,9 @@ const AccountFinalStep = () => {
       decryptPassword(user?.password || "").toUpperCase()
     );
 
-    console.log(
-      "Trinity Core Verifier:",
-      Buffer.from(verifier).toString("hex")
-    );
-    console.log("Trinity Core SALT:", Buffer.from(salt).toString("hex"));
-
     try {
       const userDateOfBirth: Date | null | undefined = user?.date_of_birth;
+
       const formattedDateOfBirth: string | undefined =
         userDateOfBirth instanceof Date
           ? userDateOfBirth.toISOString().split("T")[0]
@@ -80,10 +72,10 @@ const AccountFinalStep = () => {
       const registrationSuccessful = await registerUser(requestBody);
 
       if (registrationSuccessful) {
-        //router.push("/congrats");
+        router.push("/congrats");
       } else {
         // Manejar errores en caso de fallo en el registro
-        toast.error("xxxx.", {
+        toast.error("Verifique por favor los datos suministrados.", {
           position: toast.POSITION.BOTTOM_LEFT,
           className: "toast-message",
         });
@@ -95,7 +87,6 @@ const AccountFinalStep = () => {
         className: "toast-message",
       });
     }
-    // router.push("/congrats");
   };
 
   const handleVolverClick = () => {

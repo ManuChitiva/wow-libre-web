@@ -33,12 +33,12 @@ const initialUserData: UserModel = {
 };
 // Definición del contexto y sus tipos
 interface UserContextProps {
-  user: UserModel | null;
-  setUser: React.Dispatch<React.SetStateAction<UserModel | null>>;
+  user: UserModel;
+  setUser: React.Dispatch<React.SetStateAction<UserModel>>;
 }
 
 export const UserContext = createContext<UserContextProps>({
-  user: null,
+  user: initialUserData,
   setUser: () => {},
 });
 
@@ -47,28 +47,31 @@ interface UserProviderProps {
 }
 
 const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
-  const [user, setUser] = useState<UserModel | null>(() => {
-    if (typeof window !== "undefined" && window.localStorage) {
-      const storedUser = window.localStorage.getItem("user");
-      try {
-        return storedUser ? JSON.parse(storedUser) : null;
-      } catch (error) {
-        console.error("Error parsing user from localStorage:", error);
-        return initialUserData;
-      }
-    }
-    return null;
-  });
+  let initialUser = initialUserData;
+
+  // Verifica si estamos en el navegador (cliente)
+  if (typeof window !== "undefined") {
+    const storedUser = localStorage.getItem("user");
+    initialUser = storedUser ? JSON.parse(storedUser) : initialUserData;
+  }
+
+  const [user, setUser] = useState<UserModel>(initialUser);
 
   useEffect(() => {
-    console.log("User state:", user); // Agrega esta línea para verificar el estado de user
-
-    if (user) {
-      localStorage.setItem("user", JSON.stringify(user));
-    } else {
-      localStorage.removeItem("user");
+    // Verifica nuevamente si estamos en el navegador antes de usar localStorage
+    if (typeof window !== "undefined") {
+      if (user) {
+        localStorage.setItem("user", JSON.stringify(user));
+      } else {
+        localStorage.removeItem("user");
+      }
     }
   }, [user]);
+
+  const clearUserData = () => {
+    localStorage.removeItem("user");
+    setUser(initialUserData); // Restablecer el usuario a initialUserData
+  };
 
   return (
     <UserContext.Provider value={{ user, setUser }}>
