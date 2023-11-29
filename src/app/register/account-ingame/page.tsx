@@ -1,13 +1,13 @@
 "use client";
 import PageCounter from "@/components/page-counter";
 import TitleRegister from "@/components/register-title";
-import React, { ChangeEvent, useEffect, useState } from "react";
+import React, { ChangeEvent, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 import { useUserContext } from "@/context/UserContext";
 import { encryptPassword } from "@/components/Security";
 
-const AccountWeb = () => {
+const RegisterPassword = () => {
   const { user, setUser } = useUserContext(); // Obteniendo el contexto y funciones del contexto
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState(""); // Nuevo estado para la confirmación de contraseña
@@ -43,12 +43,14 @@ const AccountWeb = () => {
     }
 
     if (user) {
+      const encryptedPassword = encryptPassword(password);
+
       setUser({
         ...user,
-        password_web: encryptPassword(password),
+        password: encryptedPassword,
       });
     }
-    router.push("/account-final-step");
+    router.push("/register/account-web");
   };
 
   const handleVolverClick = () => {
@@ -66,7 +68,7 @@ const AccountWeb = () => {
         <div className="items-center pt-4">
           <form className="mt-4 flex flex-col" onSubmit={handleFormSubmit}>
             <label htmlFor="passwordInput" className="mb-2">
-              Contraseña para la web
+              Contraseña para el juego
             </label>
             <input
               id="passwordInput"
@@ -78,7 +80,7 @@ const AccountWeb = () => {
             />
 
             <label htmlFor="confirmPasswordInput" className="mb-2">
-              Confirmar Contraseña para la web
+              Confirmar Contraseña{" "}
             </label>
             <input
               id="confirmPasswordInput"
@@ -89,7 +91,7 @@ const AccountWeb = () => {
               onChange={handleConfirmPasswordChange}
             />
 
-            <PageCounter currentSection={6} totalSections={7} />
+            <PageCounter currentSection={5} totalSections={7} />
 
             <button
               className="bg-blue-500 text-white px-3 py-2 rounded-md mt-8 "
@@ -113,4 +115,4 @@ const AccountWeb = () => {
   );
 };
 
-export default AccountWeb;
+export default RegisterPassword;

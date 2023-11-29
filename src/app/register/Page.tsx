@@ -49,7 +49,7 @@ const Register = () => {
         date_of_birth: new Date(fecha),
       });
     }
-    router.push("/know-you");
+    router.push("/register/know-you");
   };
 
   useEffect(() => {

@@ -50,7 +50,7 @@ const ContactMeans = () => {
         cell_phone: cellPhone,
       });
     }
-    router.push("/terms-and-conditions");
+    router.push("/register/terms-and-conditions");
   };
 
   const handleVolverClick = () => {

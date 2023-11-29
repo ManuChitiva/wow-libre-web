@@ -35,7 +35,7 @@ const ContactMeans = () => {
       });
       return; // Evitar la redirección si los checkboxes no están activos
     }
-    router.push("/register-password");
+    router.push("/register/account-ingame");
   };
 
   const handleVolverClick = () => {

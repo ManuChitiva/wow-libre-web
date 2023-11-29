@@ -49,7 +49,7 @@ const KnowYou = () => {
         first_name: firstName,
       });
     }
-    router.push("/contact-means");
+    router.push("/register/contact-means");
   };
 
   const handleVolverClick = () => {
