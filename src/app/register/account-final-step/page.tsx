@@ -13,7 +13,7 @@ import { decryptPassword } from "@/components/Security";
 const crypto = require("crypto");
 
 const AccountFinalStep = () => {
-  const { user, setUser } = useUserContext(); // Obteniendo el contexto y funciones del contexto
+  const { user, setUser, clearUserData } = useUserContext(); // Obteniendo el contexto y funciones del contexto
   const [userName, setUsername] = useState("");
   const router = useRouter();
   const { computeVerifier, params } = require(`trinitycore-srp6`);
@@ -72,16 +72,15 @@ const AccountFinalStep = () => {
       const registrationSuccessful = await registerUser(requestBody);
 
       if (registrationSuccessful) {
-        router.push("/congrats");
+        router.push(`/congrats?email=${user?.email}`);
+        clearUserData();
       } else {
-        // Manejar errores en caso de fallo en el registro
         toast.error("Verifique por favor los datos suministrados.", {
           position: toast.POSITION.BOTTOM_LEFT,
           className: "toast-message",
         });
       }
     } catch (error) {
-      console.error("Error:", error);
       toast.error("Ocurrió un error al intentar registrar los datos.", {
         position: toast.POSITION.BOTTOM_LEFT,
         className: "toast-message",

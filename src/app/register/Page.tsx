@@ -8,7 +8,7 @@ import TitleRegister from "@/components/register-title";
 import PageCounter from "@/components/page-counter";
 
 const Register = () => {
-  const { user, setUser } = useUserContext(); // Obteniendo el contexto y funciones del contexto
+  const { user, setUser } = useUserContext();
   const [country, setCountry] = useState("");
   const [fecha, setFecha] = useState("");
   const router = useRouter();
@@ -41,7 +41,6 @@ const Register = () => {
       return;
     }
 
-    // Actualizar los datos del usuario en el contexto
     if (user) {
       setUser({
         ...user,
@@ -68,14 +67,14 @@ const Register = () => {
       <div className="container">
         <TitleRegister
           title=" Registrarme en "
-          description="  ¡Toda la información que nos compartas en WowLibre es como el
+          description="¡Toda la información que nos compartas en WowLibre es como el
           ingrediente especial de tu experiencia alucinante! Cuanto más sepamos,
           mejor podremos hacerte vivir algo realmente extraordinario. Así que,
           ¡compártenos esos datos y prepárate para algo fuera de serie!"
         />
 
         <div className="items-center pt-4">
-          <form className="mt-4 flex flex-col" onSubmit={handleFormSubmit}>
+          <form className="mt-4 flex flex-col " onSubmit={handleFormSubmit}>
             <label htmlFor="fechaInput" className="mb-2">
               Ingrese el pais
             </label>

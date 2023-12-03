@@ -4,12 +4,25 @@ import Link from "next/link";
 import React, { useState } from "react";
 import "./index.css";
 import DropDown from "../dropdown";
+import { useUserContext } from "@/context/UserContext";
 
 const Navbar = () => {
   const [showDropdown, setShowDropdown] = useState(false);
+  let timeoutId: NodeJS.Timeout;
+  const { user, setUser } = useUserContext();
 
   const toggleDropdown = () => {
     setShowDropdown(!showDropdown);
+  };
+  const handleMouseEnter = () => {
+    clearTimeout(timeoutId);
+    setShowDropdown(true);
+  };
+
+  const handleMouseLeave = () => {
+    timeoutId = setTimeout(() => {
+      setShowDropdown(false);
+    }, 3000); // Modifica este valor según el tiempo que consideres adecuado
   };
 
   return (
@@ -30,19 +43,19 @@ const Navbar = () => {
         </Link>
         <ul className="text-white lg:flex lg:space-x-8 lg:items-center space-y-3 sm:space-y-1 sm:space-x-4 sm:flex-row sm:text-center">
           {/* Opciones del menú */}
-          <li className="hidden lg:block">
+          <li className="hidden lg:block hover:text-orange-400">
             <Link href="/">Inicio</Link>
           </li>
-          <li className="hidden lg:block">
+          <li className="hidden lg:block hover:text-orange-400">
             <Link href="/community">Comunidad</Link>
           </li>
-          <li className="hidden lg:block">
+          <li className="hidden lg:block hover:text-orange-400">
             <Link href="/support">Soporte</Link>
           </li>
-          <li className="hidden lg:block">
+          <li className="hidden lg:block hover:text-orange-400">
             <Link href="/statistics">Estadísticas</Link>
           </li>
-          <li className="hidden lg:block">
+          <li className="hidden lg:block hover:text-orange-400">
             <Link href="/store">Tienda</Link>
           </li>
           {/* Botón de conexión para dispositivos móviles */}
@@ -50,6 +63,8 @@ const Navbar = () => {
             <button
               className="bg-btnPrimary text-white rounded-lg px-4 py-2 font-bold"
               onClick={toggleDropdown}
+              onMouseEnter={handleMouseEnter}
+              onMouseLeave={handleMouseLeave}
             >
               Conexión
             </button>

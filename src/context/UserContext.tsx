@@ -15,6 +15,10 @@ export interface UserModel {
   email: string;
   password: string;
   password_web: string;
+  token: string | null;
+  logged_in: boolean;
+  refresh_token: string | null;
+  expiration_date: string | null;
 }
 
 const initialUserData: UserModel = {
@@ -30,16 +34,22 @@ const initialUserData: UserModel = {
   email: "",
   password: "",
   password_web: "",
+  token: null,
+  refresh_token: null,
+  expiration_date: null,
+  logged_in: false,
 };
 // Definición del contexto y sus tipos
 interface UserContextProps {
   user: UserModel;
   setUser: React.Dispatch<React.SetStateAction<UserModel>>;
+  clearUserData: () => void;
 }
 
 export const UserContext = createContext<UserContextProps>({
   user: initialUserData,
   setUser: () => {},
+  clearUserData: () => {},
 });
 
 interface UserProviderProps {
@@ -58,7 +68,6 @@ const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
   const [user, setUser] = useState<UserModel>(initialUser);
 
   useEffect(() => {
-    // Verifica nuevamente si estamos en el navegador antes de usar localStorage
     if (typeof window !== "undefined") {
       if (user) {
         localStorage.setItem("user", JSON.stringify(user));
@@ -74,7 +83,7 @@ const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
   };
 
   return (
-    <UserContext.Provider value={{ user, setUser }}>
+    <UserContext.Provider value={{ user, setUser, clearUserData }}>
       {children}
     </UserContext.Provider>
   );

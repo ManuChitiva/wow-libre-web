@@ -8,7 +8,7 @@ interface TitleRegisterProps {
 const TitleRegister = ({ title, description }: TitleRegisterProps) => {
   return (
     <>
-      <h2 className="text-center mb-11 text-4xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-6xl">
+      <h2 className="text-center mb-11 text-4xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-6xl title-wow">
         {title}
         <br />
         WOW <span id="libre">LIBRE</span>
