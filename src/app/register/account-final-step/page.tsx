@@ -6,7 +6,10 @@ import { ToastContainer, toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 import { useUserContext } from "@/context/UserContext";
 import {
+  ErrorBadRequest,
+  GenericResponse,
   RegistrationData,
+  convertToErrorBadRequest,
   registerUser,
 } from "@/components/services/register/ApiService";
 import { decryptPassword } from "@/components/Security";
@@ -30,6 +33,17 @@ const AccountFinalStep = () => {
         position: toast.POSITION.BOTTOM_LEFT,
         className: "toast-message",
       });
+      return;
+    }
+
+    if (userName.trim().length < 5 || userName.trim().length > 40) {
+      toast.error(
+        "La contraseña debe ser superior a 5 caracteres e inferior a 40 caracteres.",
+        {
+          position: toast.POSITION.BOTTOM_LEFT,
+          className: "toast-message",
+        }
+      );
       return;
     }
 
@@ -69,13 +83,24 @@ const AccountFinalStep = () => {
         password: decryptPassword(user?.password_web || ""),
       };
 
-      const registrationSuccessful = await registerUser(requestBody);
+      const registrationResult = await registerUser(requestBody);
 
-      if (registrationSuccessful) {
+      if (registrationResult.code == 201) {
         router.push(`/congrats?email=${user?.email}`);
         clearUserData();
+      } else if (registrationResult.code == 400) {
+        const errorResponse = convertToErrorBadRequest(registrationResult);
+        toast.error(
+          `${errorResponse.message}: ${errorResponse.data.valuesInvalid.join(
+            ", "
+          )}`,
+          {
+            position: toast.POSITION.BOTTOM_LEFT,
+            className: "toast-message",
+          }
+        );
       } else {
-        toast.error("Verifique por favor los datos suministrados.", {
+        toast.error("Ocurrió un error al intentar registrar los datos.", {
           position: toast.POSITION.BOTTOM_LEFT,
           className: "toast-message",
         });

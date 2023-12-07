@@ -35,10 +35,21 @@ const RegisterPassword = () => {
     }
 
     if (!password.trim()) {
-      toast.error("Las contraseñas están vacías.", {
+      toast.error("La contraseña está vacía.", {
         position: toast.POSITION.BOTTOM_LEFT,
         className: "toast-message",
       });
+      return;
+    }
+
+    if (password.trim().length < 5 || password.trim().length > 30) {
+      toast.error(
+        "La contraseña debe ser superior a 5 caracteres e inferior a 30 caracteres.",
+        {
+          position: toast.POSITION.BOTTOM_LEFT,
+          className: "toast-message",
+        }
+      );
       return;
     }
 

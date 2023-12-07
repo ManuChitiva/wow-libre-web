@@ -1,30 +1,54 @@
 "use client";
+
 import React, { ChangeEvent, useEffect, useState } from "react";
+import Select from "react-select";
 import { useUserContext } from "@/context/UserContext";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useRouter } from "next/navigation";
 import TitleRegister from "@/components/register-title";
 import PageCounter from "@/components/page-counter";
+import {
+  getCountry,
+  CountryModel,
+} from "@/components/services/resources/ApiResources";
 
 const Register = () => {
   const { user, setUser } = useUserContext();
   const [country, setCountry] = useState("");
   const [fecha, setFecha] = useState("");
   const router = useRouter();
+  const [countryOptions, setCountryOptions] = useState<CountryModel[]>([
+    { value: "Otro", label: "Otro" },
+  ]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const fetchedCountryOptions = await getCountry();
+        setCountryOptions(fetchedCountryOptions);
+      } catch (error) {
+        console.error("Error:", error);
+      }
+    };
+    fetchData();
+  }, []);
 
   const handleFechaChange = (event: ChangeEvent<HTMLInputElement>) => {
     setFecha(event.target.value);
   };
 
-  const handleCountryChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setCountry(event.target.value);
+  const handleCountryChange = (selectedOption: any) => {
+    if (selectedOption) {
+      setCountry(selectedOption.value);
+    } else {
+      setCountry("");
+    }
   };
 
   const handleFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    // Validaciones
     if (!country.trim()) {
       toast.error("Por favor, ingresa un país válido.", {
         position: toast.POSITION.BOTTOM_LEFT,
@@ -75,15 +99,16 @@ const Register = () => {
 
         <div className="items-center pt-4">
           <form className="mt-4 flex flex-col " onSubmit={handleFormSubmit}>
-            <label htmlFor="fechaInput" className="mb-2">
-              Ingrese el pais
+            <label htmlFor="countrySelect" className="mb-2">
+              Selecciona el país
             </label>
-            <input
-              className="mb-4 px-4 py-2 border rounded-md text-black"
-              type="text"
-              placeholder="Ingrese el país"
-              value={country}
+            <Select
+              className="mb-4  border rounded-md text-black"
+              options={countryOptions}
+              value={countryOptions.find((option) => option.value === country)}
               onChange={handleCountryChange}
+              placeholder="Selecciona el país"
+              isSearchable
             />
             <label htmlFor="fechaInput" className="mb-2">
               Fecha de Nacimiento

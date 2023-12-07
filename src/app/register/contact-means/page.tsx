@@ -22,6 +22,11 @@ const ContactMeans = () => {
     setCellPhone(event.target.value);
   };
 
+  const isValidEmail = (email: string) => {
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return regex.test(email);
+  };
+
   const handleFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
@@ -33,9 +38,8 @@ const ContactMeans = () => {
       });
       return;
     }
-
-    if (!cellPhone.trim()) {
-      toast.error("Por favor, ingrese sus apellidos.", {
+    if (!isValidEmail(email)) {
+      toast.error("Por favor, ingrese un correo electrónico válido.", {
         position: toast.POSITION.BOTTOM_LEFT,
         className: "toast-message",
       });

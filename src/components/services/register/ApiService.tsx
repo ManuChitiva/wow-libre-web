@@ -21,6 +21,11 @@ export interface GenericResponse<T> {
   data: T;
 }
 
+export interface ErrorBadRequest {
+  numberOfInvalid: number;
+  valuesInvalid: string[];
+}
+
 interface LoginData {
   jwt: string;
   refreshToken: string;
@@ -29,7 +34,7 @@ interface LoginData {
 
 export const registerUser = async (
   userData: RegistrationData
-): Promise<GenericResponse<boolean> | boolean> => {
+): Promise<GenericResponse<void> | GenericResponse<ErrorBadRequest>> => {
   try {
     const response = await fetch("http://localhost:8080/api/account", {
       method: "POST",
@@ -38,13 +43,16 @@ export const registerUser = async (
       },
       body: JSON.stringify(userData),
     });
-    const responseData: GenericResponse<boolean> = await response.json();
-    console.log(responseData);
+
+    const responseData = await response.json();
+
     if (response.ok && response.status === 201) {
-      return true; // Registro exitoso
+      return responseData;
+    } else if (response.status === 400) {
+      const badRequestError: GenericResponse<ErrorBadRequest> = responseData;
+      return badRequestError;
     } else {
-      const errorMessage = await response.text();
-      throw new Error(errorMessage || "Error al registrar los datos");
+      throw new Error(`Ocurrió un error al intentar registrar los datos`);
     }
   } catch (error: any) {
     console.error("Error:", error);
@@ -89,4 +97,29 @@ export const loginUser = async (
       `Ocurrió un error al intentar registrar los datos: ${error.message}`
     );
   }
+};
+
+export const convertToErrorBadRequest = (
+  result: GenericResponse<void> | GenericResponse<ErrorBadRequest>
+): GenericResponse<ErrorBadRequest> => {
+  if (
+    "code" in result &&
+    "message" in result &&
+    "transactionId" in result &&
+    "data" in result &&
+    typeof result.data !== "undefined" &&
+    "numberOfInvalid" in result.data &&
+    "valuesInvalid" in result.data
+  ) {
+    return result as GenericResponse<ErrorBadRequest>;
+  }
+  return {
+    code: result.code,
+    message: result.message,
+    transactionId: result.transactionId,
+    data: {
+      numberOfInvalid: 0,
+      valuesInvalid: [],
+    },
+  };
 };

@@ -25,16 +25,24 @@ const KnowYou = () => {
     event.preventDefault();
 
     // Validaciones
-    if (!lastName.trim()) {
-      toast.error("Por favor, ingrese sus nombres.", {
+    if (
+      !lastName.trim() ||
+      lastName.trim().length < 5 ||
+      lastName.trim().length > 50
+    ) {
+      toast.error("Por favor, ingrese sus nombres validos.", {
         position: toast.POSITION.BOTTOM_LEFT,
         className: "toast-message",
       });
       return;
     }
 
-    if (!lastName.trim()) {
-      toast.error("Por favor, ingrese sus apellidos.", {
+    if (
+      !firstName.trim() ||
+      firstName.trim().length < 5 ||
+      firstName.trim().length > 50
+    ) {
+      toast.error("Por favor, ingrese sus apellidos validos.", {
         position: toast.POSITION.BOTTOM_LEFT,
         className: "toast-message",
       });
