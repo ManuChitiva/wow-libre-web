@@ -13,14 +13,19 @@ import {
   CountryModel,
 } from "@/components/services/resources/ApiResources";
 
+const defaultCountryOptions: CountryModel[] = [
+  { value: "Otro", label: "Otro" },
+  // Otras opciones predeterminadas si las hay
+];
+
 const Register = () => {
   const { user, setUser } = useUserContext();
-  const [country, setCountry] = useState("");
-  const [fecha, setFecha] = useState("");
+  const [country, setCountry] = useState<string>("");
+  const [fecha, setFecha] = useState<string>("");
+  const [countryOptions, setCountryOptions] = useState<CountryModel[]>(
+    defaultCountryOptions
+  );
   const router = useRouter();
-  const [countryOptions, setCountryOptions] = useState<CountryModel[]>([
-    { value: "Otro", label: "Otro" },
-  ]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -28,7 +33,7 @@ const Register = () => {
         const fetchedCountryOptions = await getCountry();
         setCountryOptions(fetchedCountryOptions);
       } catch (error) {
-        console.error("Error:", error);
+        console.error("Error al obtener países:", error);
       }
     };
     fetchData();
@@ -38,33 +43,25 @@ const Register = () => {
     setFecha(event.target.value);
   };
 
-  const handleCountryChange = (selectedOption: any) => {
-    if (selectedOption) {
-      setCountry(selectedOption.value);
-    } else {
-      setCountry("");
-    }
+  const handleCountryChange = (selectedOption: CountryModel | null) => {
+    setCountry(selectedOption ? selectedOption.value : "");
   };
 
   const handleFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
+    // Validación de los campos antes de enviar el formulario
     if (!country.trim()) {
-      toast.error("Por favor, ingresa un país válido.", {
-        position: toast.POSITION.BOTTOM_LEFT,
-        className: "toast-message",
-      });
+      toast.error("Por favor, selecciona un país válido.");
       return;
     }
 
     if (!fecha) {
-      toast.error("Por favor, ingresa una fecha de nacimiento válida.", {
-        position: toast.POSITION.BOTTOM_LEFT,
-        className: "toast-message",
-      });
+      toast.error("Por favor, ingresa una fecha de nacimiento válida.");
       return;
     }
 
+    // Actualizar el estado del usuario y redirigir a la siguiente página
     if (user) {
       setUser({
         ...user,

@@ -10,11 +10,12 @@
   },
   "dependencies": {
     "crypto-js": "^4.2.0",
-    "next": "14.0.1",
+    "next": "^14.0.4",
     "react": "^18",
     "react-dom": "^18",
     "react-responsive-carousel": "^3.2.23",
     "react-router-dom": "^6.18.0",
+    "react-select": "^5.8.0",
     "react-toastify": "^9.1.3",
     "sweetalert2": "^11.10.1",
     "trinitycore-srp6": "^1.0.4"
