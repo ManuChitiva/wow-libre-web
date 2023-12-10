@@ -20,10 +20,6 @@ export default function RootLayout({
 }) {
   return (
     <html lang="es">
-      <head>
-        <link rel="icon" href="/resources/logo.png" />
-      </head>
-
       <UserProvider>
         <body className={inter.className}>
           <Navbar />

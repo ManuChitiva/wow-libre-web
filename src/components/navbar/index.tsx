@@ -4,12 +4,10 @@ import Link from "next/link";
 import React, { useState } from "react";
 import "./index.css";
 import DropDown from "../dropdown";
-import { useUserContext } from "@/context/UserContext";
 
 const Navbar = () => {
   const [showDropdown, setShowDropdown] = useState(false);
   let timeoutId: NodeJS.Timeout;
-  const { user, setUser } = useUserContext();
 
   const toggleDropdown = () => {
     setShowDropdown(!showDropdown);

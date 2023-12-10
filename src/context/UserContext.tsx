@@ -1,5 +1,6 @@
 "use client";
 import React, { createContext, useContext, useState, useEffect } from "react";
+import Cookies from "js-cookie";
 
 // Definición del modelo de usuario
 export interface UserModel {
@@ -80,6 +81,7 @@ const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
   const clearUserData = () => {
     localStorage.removeItem("user");
     setUser(initialUserData); // Restablecer el usuario a initialUserData
+    Cookies.remove("jwt"); // Ajusta la expiración y la ruta según tus necesidades
   };
 
   return (

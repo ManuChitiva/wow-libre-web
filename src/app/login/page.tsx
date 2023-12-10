@@ -6,6 +6,7 @@ import React, { ChangeEvent, useState } from "react";
 import { useRouter } from "next/navigation";
 import { ToastContainer, toast } from "react-toastify";
 import Swal from "sweetalert2";
+import Cookies from "js-cookie";
 
 const Login = () => {
   const { user, setUser } = useUserContext();
@@ -39,6 +40,7 @@ const Login = () => {
 
     try {
       const response = await loginUser(userName, password);
+      Cookies.set("jwt", response.data.jwt, { expires: 7 }); // Ajusta la expiración y la ruta según tus necesidades
 
       if (user) {
         setUser({
@@ -51,7 +53,7 @@ const Login = () => {
         });
       }
 
-      router.push("/");
+      router.push("/profile");
     } catch (error: any) {
       Swal.fire({
         icon: "error",
