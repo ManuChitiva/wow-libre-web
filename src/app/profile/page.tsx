@@ -15,15 +15,19 @@ import React, { useEffect, useState } from "react";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import LoadingSpinner from "@/components/loading-spinner";
+import { useRouter } from "next/navigation";
+import Swal from "sweetalert2";
 
 const Profile = () => {
   const { user, setUser } = useUserContext();
   const [isLoading, setIsLoading] = useState(true);
+  const router = useRouter();
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await getUserDetail(user.token || "");
+
         if (user) {
           setUser({
             ...user,
@@ -36,12 +40,19 @@ const Profile = () => {
         }
         setIsLoading(false); // Marcamos la carga como completada
       } catch (error) {
-        console.error("Error al obtener países:", error);
-        setIsLoading(false); // En caso de error, también marcamos la carga como completada
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "No se ha podido obtener el detalle",
+          color: "white",
+          background: "#0B1218",
+          timer: 4500,
+        });
       }
     };
+
     fetchData();
-  }, [user, setUser]);
+  }, []);
 
   if (isLoading) {
     return (

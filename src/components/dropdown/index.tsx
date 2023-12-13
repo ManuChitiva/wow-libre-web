@@ -1,14 +1,18 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Link from "next/link";
 import { useUserContext } from "@/context/UserContext";
+import { useRouter } from "next/navigation";
 
 const DropDown = () => {
-  const { user, clearUserData } = useUserContext();
-  const logged_in = user.logged_in;
+  const { user, setUser, clearUserData } = useUserContext();
+  const router = useRouter();
 
   const handleLogout = () => {
     clearUserData();
+    router.push("/");
   };
+
+  const isLoggedIn = user.logged_in;
 
   return (
     <div className="relative positionAbsolut">
@@ -32,7 +36,7 @@ const DropDown = () => {
       </div>
 
       {/* Contenido del menú desplegable */}
-      {logged_in ? (
+      {isLoggedIn ? (
         <ul className="absolute right-0 mt-10 w-48 bg-white rounded-lg shadow-md py-2">
           <li>
             <Link

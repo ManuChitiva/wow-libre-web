@@ -37,9 +37,8 @@ export const getUserDetail = async (jwt: string): Promise<UserModel> => {
 
     if (response.ok && response.status === 200) {
       return responseData.data;
-    } else {
-      const errorMessage = await response.text();
-      throw new Error(errorMessage || "Error al Obtener los datos");
+    } else if (response.status >= 400) {
+      throw new Error("Error al Obtener los datos");
     }
   } catch (error: any) {
     console.error("Error:", error);
