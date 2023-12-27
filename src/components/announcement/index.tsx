@@ -7,7 +7,7 @@ const Announcement = () => {
       <h2>
         WOW <span id="libre">LIBRE</span>
       </h2>
-      <p className="mt-5">
+      <p className="mt-5 ">
         Wow Libre es mucho más que un servidor de World of Warcraft. Es un
         entorno totalmente libre y de código abierto, diseñado para empoderar a
         la comunidad de jugadores. En este servidor, encontrarás herramientas

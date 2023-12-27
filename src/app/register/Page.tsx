@@ -86,13 +86,15 @@ const Register = () => {
   return (
     <div className="bg-midnight text-white register-container">
       <div className="container">
-        <TitleRegister
-          title=" Registrarme en "
-          description="¡Toda la información que nos compartas en WowLibre es como el
+        <div className="mt-36">
+          <TitleRegister
+            title=" Registrarme en "
+            description="¡Toda la información que nos compartas en WowLibre es como el
           ingrediente especial de tu experiencia alucinante! Cuanto más sepamos,
           mejor podremos hacerte vivir algo realmente extraordinario. Así que,
           ¡compártenos esos datos y prepárate para algo fuera de serie!"
-        />
+          />
+        </div>
 
         <div className="items-center pt-4">
           <form className="mt-4 flex flex-col " onSubmit={handleFormSubmit}>

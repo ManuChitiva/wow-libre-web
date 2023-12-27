@@ -29,10 +29,10 @@ const Login = () => {
         imageUrl:
           "https://static.actugaming.net/media/2022/07/world-of-warcraft-lich-king-classic-889x500.jpg",
         imageHeight: 200,
-        title: "Oops...",
-        text: "Verifica los campos suministrados",
-        color: "white",
-        background: "#0B1218",
+        title: "Error de Inicio de Sesión",
+        text: "Por favor, complete todos los campos obligatorios para continuar.",
+        confirmButtonColor: "#3085d6",
+        confirmButtonText: "Entendido",
         timer: 4500,
       });
       return;

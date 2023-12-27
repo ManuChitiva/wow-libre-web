@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./index.css";
 import Announcement from "../announcement";
 import Onlyplayers from "../online-player";
@@ -7,6 +7,9 @@ import ResourcesServer from "../resources-server";
 
 const News = () => {
   const [selectedLink, setSelectedLink] = useState("noticias");
+  const [imageSrc, setImageSrc] = useState(
+    "https://i.postimg.cc/CL9xmRM5/3shots-so-1.png"
+  );
 
   const renderComponent = () => {
     if (selectedLink === "noticias") {
@@ -18,11 +21,22 @@ const News = () => {
     }
   };
 
+  useEffect(() => {
+    // Cambia la imagen basada en el componente seleccionado
+    if (selectedLink === "noticias") {
+      setImageSrc("../resources/notice-4.jpg");
+    } else if (selectedLink === "jugadores") {
+      setImageSrc("../resources/notice-6.jpg");
+    } else if (selectedLink === "recursos") {
+      setImageSrc("../resources/notice-5.jpg");
+    }
+  }, [selectedLink]);
+
   return (
     <div className="seccion-news">
       <div className="news-carrousel text-white">
         <ul className="news-carrousel-items">
-          <li className="item-navbar-carrousel">
+          <li className="item-navbar-carrousel hover:text-orange-400">
             <a
               className={"selected-link"}
               onClick={() => setSelectedLink("noticias")}
@@ -30,7 +44,7 @@ const News = () => {
               Noticias
             </a>
           </li>
-          <li className="item-navbar-carrousel">
+          <li className="item-navbar-carrousel hover:text-orange-400">
             <a
               className={"selected-link"}
               onClick={() => setSelectedLink("jugadores")}
@@ -38,30 +52,35 @@ const News = () => {
               Jugadores Online
             </a>
           </li>
-          <li className="item-navbar-carrousel">
+          <li className="item-navbar-carrousel hover:text-orange-400">
             <a
               className={"selected-link"}
               onClick={() => setSelectedLink("recursos")}
             >
-              Recursos
+              Conexion
             </a>
           </li>
         </ul>
       </div>
 
-      {/* Div para contenido a la derecha (horizontal) */}
+      {/* Div para contenido a la Izquierda  */}
       <div id="noticias" className="w-5/6 md:w-2/3 text-white news-container">
         {renderComponent()}
       </div>
+
+      {/* Div para contenido a la derecha  */}
       <div className="w-5/6 md:w-2/3 text-white news-container">
-        <img
-          src="https://i.postimg.cc/CL9xmRM5/3shots-so-1.png"
-          className="rounded-lg"
-          style={{
-            maxWidth: "100%",
-            maxHeight: "32rem", // Limita la altura máxima de la imagen
-          }}
-        />
+        <div className="image-container absolute  inset-0 opacity-70 rounded-full">
+          <img
+            src={imageSrc}
+            style={{
+              maxWidth: "100%",
+              maxHeight: "100%",
+            }}
+            alt="Imagen dinámica"
+            className="z-10 relative rounded-lg"
+          />
+        </div>
       </div>
     </div>
   );

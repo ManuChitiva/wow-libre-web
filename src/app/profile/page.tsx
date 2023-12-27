@@ -9,7 +9,10 @@ import {
   faEnvelope,
 } from "@fortawesome/free-solid-svg-icons";
 
-import { getUserDetail } from "@/components/services/detailUser/ApiDetailUser";
+import {
+  UserDetail,
+  getUserDetail,
+} from "@/components/services/detailUser/ApiDetailUser";
 import { useUserContext } from "@/context/UserContext";
 import React, { useEffect, useState } from "react";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
@@ -17,6 +20,8 @@ import "react-tabs/style/react-tabs.css";
 import LoadingSpinner from "@/components/loading-spinner";
 import { useRouter } from "next/navigation";
 import Swal from "sweetalert2";
+import Friend from "@/components/friend";
+import ProfileDetail from "@/components/profile-detail/page";
 
 const Profile = () => {
   const { user, setUser } = useUserContext();
@@ -26,9 +31,11 @@ const Profile = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await getUserDetail(user.token || "");
+        const response: UserDetail = await getUserDetail(user.token || "");
+        console.log(response.last_name);
 
         if (user) {
+          console.log("aioskdjoaskdokasodkaoskdo");
           setUser({
             ...user,
             email: response.email,
@@ -36,8 +43,10 @@ const Profile = () => {
             country: response.country,
             last_name: response.last_name,
             first_name: response.first_name,
+            date_of_birth: response.date_of_birth,
           });
         }
+
         setIsLoading(false); // Marcamos la carga como completada
       } catch (error) {
         Swal.fire({
@@ -68,9 +77,9 @@ const Profile = () => {
   }
 
   return (
-    <div className="container mx-auto py-9 ">
+    <div className="container  mx-auto py-9 ">
       {/* Sección de perfil */}
-      <div className="flex flex-col items-center justify-center">
+      <div className="flex flex-col  items-center justify-center">
         <img
           src="https://via.placeholder.com/150"
           alt="Avatar del usuario"
@@ -91,24 +100,24 @@ const Profile = () => {
       <div className="mt-6 border border-gray-300 rounded-lg overflow-hidden">
         <Tabs>
           <div className="flex">
-            <TabList className="flex flex-col border-r mr-24">
-              <Tab className="py-4 px-6 hover:bg-gray-200 cursor-pointer text-lg font-semibold  flex items-center">
+            <TabList className="flex flex-col  border-r">
+              <Tab className="py-4 px-6 hover:bg-gray-400 cursor-pointer text-lg font-semibold  flex items-center">
                 <FontAwesomeIcon icon={faComment} className="mr-2" />
                 Amigos
               </Tab>
-              <Tab className="py-4 px-6 hover:bg-gray-200 cursor-pointer text-lg font-semibold  flex items-center">
+              <Tab className="py-4 px-6 hover:bg-gray-400 cursor-pointer text-lg font-semibold  flex items-center">
                 <FontAwesomeIcon icon={faEnvelope} className="mr-2" />
                 Notificaciones
               </Tab>
-              <Tab className="py-4 px-6  hover:bg-gray-200 cursor-pointer text-lg font-semibold  flex items-center">
+              <Tab className="py-4 px-6  hover:bg-gray-400 cursor-pointer text-lg font-semibold  flex items-center">
                 <FontAwesomeIcon icon={faUser} className="mr-2" />
                 Perfil
               </Tab>
-              <Tab className="py-4 px-6  hover:bg-gray-200 cursor-pointer text-lg font-semibold  flex items-center">
+              <Tab className="py-4 px-6  hover:bg-gray-400 cursor-pointer text-lg font-semibold  flex items-center">
                 <FontAwesomeIcon icon={faClipboard} className="mr-2" />
                 Movimientos
               </Tab>
-              <Tab className="py-4 px-6  hover:bg-gray-200 cursor-pointer text-lg font-semibold  flex items-center">
+              <Tab className="py-4 px-6  hover:bg-gray-400 cursor-pointer text-lg font-semibold  flex items-center">
                 <FontAwesomeIcon icon={faExchangeAlt} className="mr-2" />
                 Seguridad
               </Tab>
@@ -121,7 +130,7 @@ const Profile = () => {
             <div className="w-full px-4">
               <TabPanel>
                 {/* Contenido de la pestaña Amigos */}
-                <div className="p-4">Contenido de la pestaña Amigos</div>
+                <Friend />
               </TabPanel>
               <TabPanel>
                 {/* Contenido de la pestaña Configuraciones */}
@@ -132,7 +141,7 @@ const Profile = () => {
               <TabPanel>
                 {/* Contenido de la pestaña Perfil Detallado */}
                 <div className="p-4">
-                  Contenido de la pestaña Perfil Detallado
+                  <ProfileDetail user={user} setUser={setUser} />
                 </div>
               </TabPanel>
               <TabPanel>

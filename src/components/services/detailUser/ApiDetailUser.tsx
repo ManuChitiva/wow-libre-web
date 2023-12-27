@@ -15,16 +15,17 @@ export interface ErrorBadRequest {
   valuesInvalid: string[];
 }
 
-export interface UserModel {
+export interface UserDetail {
   username: string;
   country: string;
   first_name: string;
   last_name: string;
   cell_phone: string;
   email: string;
+  date_of_birth: Date;
 }
 
-export const getUserDetail = async (jwt: string): Promise<UserModel> => {
+export const getUserDetail = async (jwt: string): Promise<UserDetail> => {
   try {
     const response = await fetch("http://localhost:8080/api/account/user", {
       method: "GET",
@@ -40,10 +41,41 @@ export const getUserDetail = async (jwt: string): Promise<UserModel> => {
     } else if (response.status >= 400) {
       throw new Error("Error al Obtener los datos");
     }
+
+    // Agregar un retorno por defecto en caso de otros casos no contemplados
+    throw new Error("Error desconocido al obtener los datos");
   } catch (error: any) {
     console.error("Error:", error);
     throw new Error(
       `Ocurrió un error al intentar registrar los datos: ${error.message}`
+    );
+  }
+};
+
+export const updateUser = async (
+  jwt: string,
+  user: UserDetail
+): Promise<void> => {
+  console.log(user);
+  try {
+    const response = await fetch("http://localhost:8080/api/account", {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + jwt,
+      },
+      body: JSON.stringify(user),
+    });
+
+    if (response.ok && response.status === 200) {
+      console.log("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+      return;
+    }
+    throw new Error("Ha ocurrido un error al actualizar los datos");
+  } catch (error: any) {
+    console.error("Error:", error);
+    throw new Error(
+      `Ha ocurrido un error al actualizar los datos : ${error.message}`
     );
   }
 };

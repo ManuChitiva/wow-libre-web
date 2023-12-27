@@ -3,7 +3,7 @@ import React from "react";
 const Footer = () => {
   return (
     <>
-      <div className="pl-2 pt-40 flex flex-col items-center justify-center py-6 bg-midnight">
+      <div className="pl-2  flex flex-col items-center justify-center py-6 bg-midnight">
         <div className="flex flex-wrap justify-between items-center text-center gap-4 w-full">
           <div className="flex justify-center items-center flex-col text-center">
             <p className="text-white mb-4  title-wow">
@@ -34,9 +34,10 @@ const Footer = () => {
               </div>
             </div>
           </div>
-          <p className="w-full md:w-auto text-sm text-white">
+          <p className="w-full flex flex-col md:w-auto text-sm text-white">
             Derechos reservados Sierra-code@ 2023
           </p>
+
           <div className="flex">
             <p className="mx-4 text-white title-wow">Términos y condiciones</p>
             <p className="mx-4 text-white title-wow">Política de privacidad</p>
