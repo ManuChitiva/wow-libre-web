@@ -37,10 +37,10 @@ const DropDown = () => {
 
       {/* Contenido del menú desplegable */}
       {isLoggedIn ? (
-        <ul className="absolute right-0 mt-10 w-48 bg-white rounded-lg shadow-md py-2">
+        <ul className="absolute right-0 mt-10 w-48  bg-midnight rounded-lg shadow-md py-2 border border-white">
           <li>
             <Link
-              className="block px-4 py-2 text-gray-800 hover:bg-gray-100"
+              className="block px-4 py-2 text-white  hover:text-orange-500"
               href="/profile"
             >
               Mi Perfil
@@ -49,17 +49,17 @@ const DropDown = () => {
           <li>
             <a
               onClick={handleLogout}
-              className="block px-4 py-2 text-gray-800 hover:bg-gray-100 cursor-pointer"
+              className="block px-4 py-2 text-white    hover:text-orange-400 cursor-pointer"
             >
               Cerrar Sesión
             </a>
           </li>
         </ul>
       ) : (
-        <ul className="absolute right-0 mt-10 w-48 bg-white rounded-lg shadow-md py-2">
+        <ul className="absolute right-0 mt-10 w-48  bg-midnight rounded-lg shadow-md py-2 border border-white">
           <li>
             <Link
-              className="block px-4 py-2 text-gray-800 hover:bg-orange-400"
+              className="block px-4 py-2 text-white hover:text-orange-400"
               href="/login"
             >
               Iniciar sesión
@@ -67,7 +67,7 @@ const DropDown = () => {
           </li>
           <li>
             <Link
-              className="block px-4 py-2 text-gray-800 hover:bg-orange-400"
+              className="block px-4 py-2 text-white hover:text-orange-400"
               href="/register"
             >
               Registrarse

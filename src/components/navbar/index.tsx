@@ -51,9 +51,6 @@ const Navbar = () => {
             <Link href="/support">Soporte</Link>
           </li>
           <li className="hidden lg:block hover:text-orange-400">
-            <Link href="/statistics">Estadísticas</Link>
-          </li>
-          <li className="hidden lg:block hover:text-orange-400">
             <Link href="/store">Tienda</Link>
           </li>
           {/* Botón de conexión para dispositivos móviles */}

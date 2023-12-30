@@ -10,7 +10,7 @@ const Partners = () => {
     {
       id: 1,
       name: "Warmane",
-      description: "XXXXX",
+      description: "Migracion Disponible",
       backgroundImage:
         "https://scontent.fbog11-1.fna.fbcdn.net/v/t39.30808-6/292633890_726810068592100_755955628419423819_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=efb6e6&_nc_ohc=f-aaCR_fT_kAX9THR_5&_nc_ht=scontent.fbog11-1.fna&oh=00_AfB1HF_9_pSjR3OUMLOe_cnpMDMpSPy6MaqX9hhnrq2YIw&oe=658E6747",
     },
@@ -18,16 +18,14 @@ const Partners = () => {
       id: 2,
       name: "Nombre del Socio 2",
       description: "Descripción 2",
-      backgroundImage:
-        "https://http2.mlstatic.com/resources/frontend/statics/loyal/partners/hbo/widget/HBOMax_widgetmulti_mobdsk_mco_@2x.jpg",
+      backgroundImage: "https://i.ibb.co/tBJ2ZMr/ferosis-Wow.jpg",
       icon: "URL_imagen_icono_2",
     },
     {
       id: 3,
       name: "Nombre del Socio 3",
       description: "Descripción 3",
-      backgroundImage:
-        "https://http2.mlstatic.com/resources/frontend/statics/loyal/partners/paramount/widgets/paramount_widgetmulti_mobdsk_colombia_@2x.jpg",
+      backgroundImage: "https://i.ibb.co/CzL1BLB/logo.png",
       icon: "URL_imagen_icono_3",
     },
     {
@@ -46,15 +44,6 @@ const Partners = () => {
         "https://http2.mlstatic.com/resources/frontend/statics/loyal/partners/hbo/widget/HBOMax_widgetmulti_mobdsk_mco_@2x.jpg",
       icon: "URL_imagen_icono_5",
     },
-    {
-      id: 3,
-      name: "Nombre del Socio 6",
-      description: "Descripción 6",
-      backgroundImage:
-        "https://http2.mlstatic.com/resources/frontend/statics/loyal/partners/paramount/widgets/paramount_widgetmulti_mobdsk_colombia_@2x.jpg",
-      icon: "URL_imagen_icono_6",
-    },
-    // ... Agrega más objetos de socio si es necesario
   ];
 
   const [partners, setPartners] = useState(initialPartners);
@@ -69,6 +58,21 @@ const Partners = () => {
 
   return (
     <div className="container bg-midnight">
+      <div className="partners-header">
+        <div className="flex items-center mb-8">
+          <h2 className="text-4xl font-bold text-gray-500 mr-4">
+            Beneficios de Wow Libre
+          </h2>
+          <p className="text-sm text-gray-600">
+            <a
+              href="/todos-los-beneficios"
+              className="text-blue-500 hover:underline"
+            >
+              Ver todos los beneficios
+            </a>
+          </p>
+        </div>
+      </div>
       <Slider {...settings}>
         {partners.map((partner) => (
           <div key={partner.id}>

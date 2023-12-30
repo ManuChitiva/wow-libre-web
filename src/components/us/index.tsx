@@ -31,6 +31,9 @@ const Us = () => {
               comunidad, y su capacidad para compartir y expandir el
               conocimiento define el rumbo del futuro de Azeroth.
             </p>
+            <button className="bg-blue-700 text-white py-3 px-7 rounded-lg hover:bg-blue-600 mt-5">
+              Documentacion
+            </button>
           </div>
         </div>
       </div>
