@@ -28,11 +28,11 @@ Este proyecto es la creacion de un sitio web escalable y dinamico, que permita l
 ## Contribución
 ¡Las contribuciones son bienvenidas! Si deseas contribuir a este proyecto, por favor sigue estos pasos:
 
-- **Haz un fork del repositorio.
-- **Crea una rama (git checkout -b feature/AmazingFeature).
-- **Realiza tus cambios y haz commits (git commit -m 'Añade una función increíble').
-- **Sube tus cambios (git push origin feature/AmazingFeature).
-- **Abre una solicitud de extracción y describe tus cambios detalladamente.
+- **Haz un fork del repositorio.**
+- **Crea una rama** (git checkout -b feature/AmazingFeature).
+- **Realiza tus cambios** y haz commits (git commit -m 'Añade una función increíble').
+- **Sube tus cambios** (git push origin feature/AmazingFeature).
+- **Abre una solicitud de extracción** y describe tus cambios detalladamente.
 
 ## Autores
 Manuel Chitiva Rodriguez - Desarrollador Principal
