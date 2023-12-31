@@ -1,0 +1,29 @@
+.partner-card {
+  position: relative;
+  width: 20rem; /* Ancho de la tarjeta */
+  height: 30rem; /* Alto de la tarjeta */
+  overflow: hidden;
+  background-size: cover;
+  background-position: center; /* Para mostrar siempre el centro de la imagen */
+}
+.partner-details {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.5); /* Fondo semi-transparente */
+}
+
+.partner-text {
+  color: white; /* Texto en color blanco */
+  margin-bottom: 10px;
+}
+
+.partner-image img {
+  display: block;
+  width: 40px; /* Ancho del icono */
+  height: 40px; /* Alto del icono */
+  margin-right: 10px;
+  float: left;
+}

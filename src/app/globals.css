@@ -2,26 +2,38 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+@font-face {
+  font-family: "Folkard";
+  src: url("/font/Folkard-Regular.ttf") format("truetype");
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+.title-wow {
+  font-family: "Folkard", sans-serif;
+}
+
+html {
+  box-sizing: border-box;
+}
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+.container {
+  max-width: 1200px; /* Puedes ajustar el ancho máximo según tus necesidades */
+  margin: 0 auto; /* Centra el contenedor horizontalmente en la página */
+  padding: 16px; /* Agrega espaciado interno si es necesario */
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  height: 100vh;
+}
+
+#libre {
+  color: #ff4e16;
+  font-weight: bold;
+}
+
+.register-container {
+  height: 78.6vh;
 }

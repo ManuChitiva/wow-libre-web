@@ -1,0 +1,12 @@
+.image-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.image-container img {
+  transition: opacity 0.3s ease; /* Agrega una transición suave para la opacidad */
+}
+
+.image-container:hover img {
+  opacity: 0.8; /* Cambia la opacidad de la imagen al hacer hover */
+}
