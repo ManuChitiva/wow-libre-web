@@ -1,36 +1,38 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Proyecto Wow Libre  🌟
 
-## Getting Started
+Este es un proyecto increíble creado con la combinación de React, Next.js y TypeScript. ¡Bienvenido/a! 🚀
 
-First, run the development server:
+## Descripción
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Este proyecto es la creacion de un sitio web escalable y dinamico, que permita la creacion de nuevos servidores de World of warcrafts 
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Funcionalidades
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **Rendimiento Óptimo**: Aprovecha las capacidades de optimización de renderizado de Next.js para obtener un rendimiento excepcional.
+- **TypeScript Typing**: Aprovecha el poder de TypeScript para un desarrollo más seguro y eficiente.
+- **Enrutamiento Dinámico**: Utiliza el enrutamiento dinámico de Next.js para una navegación fluida entre páginas.
+- **Componentes Reutilizables**: Crea componentes modulares y reutilizables para una arquitectura más limpia.
+- **Estilos con CSS Modules**: Aplica estilos de manera modular utilizando CSS Modules para evitar conflictos y mejorar el mantenimiento.
+- **API Routes**: Implementa rutas de API con Next.js para gestionar la lógica del servidor de manera sencilla.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Instalación
 
-## Learn More
+1. Clona este repositorio en tu máquina local.
+2. Instala las dependencias utilizando npm:
 
-To learn more about Next.js, take a look at the following resources:
+   ```bash
+   npm install
+3. Abre tu navegador y ve a http://localhost:3000 para ver la aplicación en funcionamiento.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Contribución
+¡Las contribuciones son bienvenidas! Si deseas contribuir a este proyecto, por favor sigue estos pasos:
 
-## Deploy on Vercel
+- **Haz un fork del repositorio.**
+- **Crea una rama** (git checkout -b feature/AmazingFeature).
+- **Realiza tus cambios** y haz commits (git commit -m 'Añade una función increíble').
+- **Sube tus cambios** (git push origin feature/AmazingFeature).
+- **Abre una solicitud de extracción** y describe tus cambios detalladamente.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Autores
+Manuel Chitiva Rodriguez - Desarrollador Principal
