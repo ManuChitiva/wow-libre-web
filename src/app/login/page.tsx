@@ -4,7 +4,6 @@ import { loginUser } from "@/components/services/register/ApiService";
 import { useUserContext } from "@/context/UserContext";
 import React, { ChangeEvent, useState } from "react";
 import { useRouter } from "next/navigation";
-import { ToastContainer, toast } from "react-toastify";
 import Swal from "sweetalert2";
 import Cookies from "js-cookie";
 
@@ -47,8 +46,8 @@ const Login = () => {
           ...user,
           username: userName,
           token: response.data.jwt,
-          expiration_date: response.data.expirationDate,
-          refresh_token: response.data.refreshToken,
+          expiration_date: response.data.expiration_date,
+          refresh_token: response.data.refresh_token,
           logged_in: true,
         });
       }
@@ -69,7 +68,7 @@ const Login = () => {
   return (
     <>
       {/* Same as */}
-      <div className="flex flex-col items-center justify-center bg-midnight text-white register-container">
+      <div className="flex flex-col items-center justify-center bg-midnight text-white container-heigth">
         <img
           src="/resources/login.png"
           alt="Ejemplo"

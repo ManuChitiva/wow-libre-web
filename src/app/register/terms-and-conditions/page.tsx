@@ -43,13 +43,16 @@ const ContactMeans = () => {
   };
 
   return (
-    <div className="bg-midnight text-white register-container">
+    <div className="bg-midnight text-white container-heigth">
       <div className="container">
-        <TitleRegister
-          title=" Registrarme en "
-          description="Esto es lo que utilizarás cuando inicies sesión en los sitios web y aplicaciones móviles."
-        />
-
+        <div className="mt-20">
+          <TitleRegister
+            title=" Registrarme en "
+            description="¡Bienvenido a Wow Libre! Aceptar nuestras opciones te permite 
+            sumergirte en una experiencia personalizada llena de ofertas exclusivas, 
+            noticias emocionantes y mucho más."
+          />
+        </div>
         <div className="pt-4">
           <form className="mt-4 flex flex-col" onSubmit={handleFormSubmit}>
             <label className="flex items-center space-x-2 cursor-pointer">

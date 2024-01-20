@@ -1,6 +1,3 @@
-import exp from "constants";
-import { useState } from "react";
-
 export interface RegistrationData {}
 
 export interface GenericResponse<T> {
@@ -25,6 +22,10 @@ export interface UserDetail {
   date_of_birth: Date;
 }
 
+export interface CharactersOnline {
+  alliance: number;
+  horde: number;
+}
 export const getUserDetail = async (jwt: string): Promise<UserDetail> => {
   try {
     const response = await fetch("http://localhost:8080/api/account/user", {
@@ -34,7 +35,7 @@ export const getUserDetail = async (jwt: string): Promise<UserDetail> => {
         Authorization: "Bearer " + jwt,
       },
     });
-    const responseData: GenericResponse<UserModel> = await response.json();
+    const responseData: GenericResponse<UserDetail> = await response.json();
 
     if (response.ok && response.status === 200) {
       return responseData.data;
@@ -76,6 +77,36 @@ export const updateUser = async (
     console.error("Error:", error);
     throw new Error(
       `Ha ocurrido un error al actualizar los datos : ${error.message}`
+    );
+  }
+};
+
+export const getNumberCharactersOline = async (): Promise<CharactersOnline> => {
+  try {
+    const response = await fetch(
+      "http://localhost:8081/api/characters/number/online",
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    const responseData: GenericResponse<CharactersOnline> =
+      await response.json();
+
+    if (response.ok && response.status === 200) {
+      return responseData.data;
+    } else if (response.status >= 400) {
+      throw new Error("Error al Obtener los datos");
+    }
+
+    // Agregar un retorno por defecto en caso de otros casos no contemplados
+    throw new Error("Error desconocido al obtener los datos");
+  } catch (error: any) {
+    console.error("Error:", error);
+    throw new Error(
+      `Ocurrió un error al intentar registrar los datos: ${error.message}`
     );
   }
 };

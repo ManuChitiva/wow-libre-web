@@ -69,13 +69,14 @@ const RegisterPassword = () => {
   };
 
   return (
-    <div className="bg-midnight text-white register-container">
+    <div className="bg-midnight text-white container-heigth">
       <div className="container">
-        <TitleRegister
-          title=" Registrarme en "
-          description="Protege tu cuenta y elige una contraseña segura para el juego."
-        />
-
+        <div className="mt-20">
+          <TitleRegister
+            title=" Registrarme en "
+            description="Protege tu cuenta y elige una contraseña segura para el juego."
+          />
+        </div>
         <div className="items-center pt-4">
           <form className="mt-4 flex flex-col" onSubmit={handleFormSubmit}>
             <label htmlFor="passwordInput" className="mb-2">

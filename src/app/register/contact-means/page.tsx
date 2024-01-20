@@ -32,7 +32,7 @@ const ContactMeans = () => {
 
     // Validaciones
     if (!email.trim()) {
-      toast.error("Por favor, ingrese sus nombres.", {
+      toast.error("Por favor, ingrese su correo electrónico.", {
         position: toast.POSITION.BOTTOM_LEFT,
         className: "toast-message",
       });
@@ -69,13 +69,14 @@ const ContactMeans = () => {
   }, [setUser]);
 
   return (
-    <div className="bg-midnight text-white register-container">
+    <div className="bg-midnight text-white container-heigth">
       <div className="container">
-        <TitleRegister
-          title=" Registrarme en "
-          description="Esto es lo que utilizarás cuando inicies sesión en los sitios web y aplicaciones móviles."
-        />
-
+        <div className="mt-20">
+          <TitleRegister
+            title=" Registrarme en "
+            description="Esto es lo que utilizarás cuando inicies sesión en los sitios web y aplicaciones móviles."
+          />
+        </div>
         <div className="items-center pt-4">
           <form className="mt-4 flex flex-col" onSubmit={handleFormSubmit}>
             <label htmlFor="lastNameInput" className="mb-2">

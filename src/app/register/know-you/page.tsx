@@ -72,15 +72,16 @@ const KnowYou = () => {
   }, [setUser]);
 
   return (
-    <div className="bg-midnight text-white register-container">
+    <div className="bg-midnight text-white container-heigth">
       <div className="container">
-        <TitleRegister
-          title=" Registrarme en "
-          description=" Es posible que se utilice tu nombre real en el 
+        <div className="mt-20">
+          <TitleRegister
+            title=" Registrarme en "
+            description=" Es posible que se utilice tu nombre real en el 
           futuro para verificar tu identidad cuando te pongas en contacto con WowLibre. 
           Por defecto, tu nombre real permanecerá oculto para otros usuarios."
-        />
-
+          />
+        </div>
         <div className="items-center pt-4">
           <form className="mt-4 flex flex-col" onSubmit={handleFormSubmit}>
             <label htmlFor="lastNameInput" className="mb-2">

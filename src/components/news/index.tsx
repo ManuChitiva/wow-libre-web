@@ -33,7 +33,7 @@ const News = () => {
   }, [selectedLink]);
 
   return (
-    <div className="seccion-news">
+    <div className="seccion-news container">
       <div className="news-carrousel text-white">
         <ul className="news-carrousel-items">
           <li className="item-navbar-carrousel hover:text-orange-400">
@@ -41,7 +41,7 @@ const News = () => {
               className={"selected-link"}
               onClick={() => setSelectedLink("noticias")}
             >
-              Noticias
+              Anuncio
             </a>
           </li>
           <li className="item-navbar-carrousel hover:text-orange-400">
@@ -64,13 +64,13 @@ const News = () => {
       </div>
 
       {/* Div para contenido a la Izquierda  */}
-      <div id="noticias" className="w-5/6 md:w-2/3 text-white news-container">
+      <div id="noticias" className="w-full md:w-2/3  text-white news-container">
         {renderComponent()}
       </div>
 
       {/* Div para contenido a la derecha  */}
-      <div className="w-5/6 md:w-2/3 text-white news-container">
-        <div className="image-container absolute  inset-0 opacity-70 rounded-full">
+      <div className="hidden md:block w-1/3 text-white news-container">
+        <div className="image-container absolute inset-0 opacity-70 rounded-full">
           <img
             src={imageSrc}
             style={{

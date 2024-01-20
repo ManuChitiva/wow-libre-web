@@ -3,7 +3,7 @@ import React from "react";
 
 const Subscription = () => {
   return (
-    <div className="bg-midnight rounded-lg overflow-hidden  mb-20 pt-5">
+    <div className="bg-midnight rounded-lg overflow-hidden  mb-20 pt-5 mt-20">
       <div className="max-w-5xl mx-auto">
         <div className="relative">
           <div className="bg-gradient-to-br from-pink-600 to-indigo-900 rounded-t-lg">
@@ -26,7 +26,7 @@ const Subscription = () => {
                   alt="Avatar"
                 />
               </div>
-              <p className=" text-black">
+              <p className=" font-bold text-gray-600">
                 Migracion de tus personajes a otros servidores
               </p>
             </div>
@@ -38,7 +38,9 @@ const Subscription = () => {
                   alt="Avatar"
                 />
               </div>
-              <p className="text-black">Servicios de juego - Ilimitados</p>
+              <p className="font-bold text-gray-600">
+                Servicios de juego - Ilimitados
+              </p>
             </div>
             <div className="text-center">
               <div className="rounded-full h-24 w-24 overflow-hidden mx-auto mb-2">
@@ -48,7 +50,7 @@ const Subscription = () => {
                   alt="Avatar"
                 />
               </div>
-              <p className="text-black">Regalos y beneficios</p>
+              <p className="font-bold text-gray-600">Regalos y beneficios</p>
             </div>
           </div>
           <div className="flex justify-end pr-4 pb-4">

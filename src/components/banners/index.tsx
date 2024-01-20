@@ -2,20 +2,29 @@
 import React from "react";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
+import advertisingBannerOne from "../../../public/resources/home/banner/banner_one.jpg";
+import advertisingBannerTwo from "../../../public/resources/home/banner/banner_two.jpg";
+import advertisingBannerThree from "../../../public/resources/home/banner/banner_three.jpg";
+import advertisingBannerFour from "../../../public/resources/home/banner/banner_four.jpg";
+
+import Image from "next/image";
 
 const banners = [
   {
-    image: "https://i.postimg.cc/MpWKrGyt/peakpx.jpg",
-    alt: "Banner 1",
+    image: advertisingBannerOne,
+    alt: "Advertising banner for the game, showing arthas",
   },
   {
-    image:
-      "https://i.postimg.cc/wBCCZWCH/wow-classic-vanilla-3840x1080-dual-screen-by-nedelon-dd7iy8j-pre.jpg",
-    alt: "Banner 2",
+    image: advertisingBannerTwo,
+    alt: "World of warcraft game advertising banner",
   },
   {
-    image: "https://i.postimg.cc/ZnJ3RSch/Rectangle-6.png",
-    alt: "Banner 3",
+    image: advertisingBannerThree,
+    alt: "World of warcraft game advertising banner",
+  },
+  {
+    image: advertisingBannerFour,
+    alt: "World of warcraft game advertising banner",
   },
 ];
 
@@ -35,13 +44,13 @@ const Advertising = () => {
       >
         {banners.map((banner, index) => (
           <div key={index} className="relative">
-            <img
+            <Image
               src={banner.image}
               alt={banner.alt}
               className="rounded-lg"
               style={{
                 maxWidth: "100%",
-                maxHeight: "32rem", // Limita la altura máxima de la imagen
+                maxHeight: "30rem", // Limita la altura máxima de la imagen
               }}
             />
           </div>

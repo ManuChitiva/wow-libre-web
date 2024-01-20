@@ -2,3 +2,17 @@
   color: #ff4e16;
   font-weight: bold;
 }
+
+.announcement-text {
+  font-size: 16px;
+  line-height: 1.5;
+  color: #b5b4b4; /* Cambia el color del texto según tus preferencias */
+  text-align: justify;
+}
+
+/* Media query para resoluciones más pequeñas */
+@media screen and (max-width: 768px) {
+  .announcement-text {
+    font-size: 14px; /* Ajusta según sea necesario para tamaños más pequeños */
+  }
+}

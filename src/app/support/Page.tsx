@@ -1,5 +1,5 @@
 "use client";
-import Characters from "@/components/Characters";
+import Characters from "@/components/characters";
 import WoWSupport from "@/components/WoWSupport";
 
 const Support = () => {

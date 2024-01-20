@@ -7,7 +7,7 @@ const Congrats = () => {
 
   const search = searchParams.get("email");
   return (
-    <div className="bg-midnight register-container flex flex-col items-center justify-center">
+    <div className="bg-midnight container-heigth flex flex-col items-center justify-center">
       <img
         src="/resources/logo.png"
         alt="Ejemplo"

@@ -1,6 +1,3 @@
-import exp from "constants";
-import { useState } from "react";
-
 export interface RegistrationData {
   username?: string;
   salt: string;
@@ -28,8 +25,8 @@ export interface ErrorBadRequest {
 
 interface LoginData {
   jwt: string;
-  refreshToken: string;
-  expirationDate: string;
+  refresh_token: string;
+  expiration_date: string;
 }
 
 export const registerUser = async (
@@ -86,6 +83,7 @@ export const loginUser = async (
     console.log(responseData);
 
     if (response.ok && response.status === 200) {
+      console.log("CHITI");
       return responseData;
     } else {
       const errorMessage = await response.text();

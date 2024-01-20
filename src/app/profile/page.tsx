@@ -77,7 +77,7 @@ const Profile = () => {
   }
 
   return (
-    <div className="container  mx-auto py-9 ">
+    <div className="container  mx-auto py-20 container-heigth mb-">
       {/* Sección de perfil */}
       <div className="flex flex-col  items-center justify-center">
         <img
