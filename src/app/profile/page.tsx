@@ -8,9 +8,11 @@ import {
   faComment,
   faEnvelope,
 } from "@fortawesome/free-solid-svg-icons";
-
 import {
+  Character,
+  Characters,
   UserDetail,
+  getCharacters,
   getUserDetail,
 } from "@/components/services/detailUser/ApiDetailUser";
 import { useUserContext } from "@/context/UserContext";
@@ -22,11 +24,29 @@ import { useRouter } from "next/navigation";
 import Swal from "sweetalert2";
 import Friend from "@/components/friend";
 import ProfileDetail from "@/components/profile-detail/page";
+import CharacterList from "@/components/character";
 
 const Profile = () => {
   const { user, setUser } = useUserContext();
   const [isLoading, setIsLoading] = useState(true);
-  const router = useRouter();
+  const [characters, setCharacters] = useState<Character[]>([]);
+  const [selectedCharacter, setSelectedCharacter] = useState<Character>();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response: Characters = await getCharacters(user.token || "");
+        setCharacters(response.characters);
+      } catch (error) {
+        console.error("Error al obtener personajes:", error);
+        setCharacters([]); // Inicializa characters como un arreglo vacío en caso de error
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchData();
+  }, [setIsLoading]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -35,7 +55,6 @@ const Profile = () => {
         console.log(response.last_name);
 
         if (user) {
-          console.log("aioskdjoaskdokasodkaoskdo");
           setUser({
             ...user,
             email: response.email,
@@ -61,7 +80,12 @@ const Profile = () => {
     };
 
     fetchData();
-  }, []);
+  }, [setIsLoading]);
+
+  const handleSelectCharacter = (character: Character) => {
+    console.log("Personaje seleccionado:", character);
+    setSelectedCharacter(character);
+  };
 
   if (isLoading) {
     return (
@@ -77,7 +101,7 @@ const Profile = () => {
   }
 
   return (
-    <div className="container  mx-auto py-20 container-heigth mb-">
+    <div className="container  mx-auto py-20  mb-">
       {/* Sección de perfil */}
       <div className="flex flex-col  items-center justify-center">
         <img
@@ -92,6 +116,16 @@ const Profile = () => {
           <p className="text-gray-500 text-lg">Email: {user.email}</p>
           <p className="text-gray-500 text-lg">Pais: {user.country}</p>
           <p className="text-gray-500 text-lg">Username: {user.username}</p>
+          <div className="mt-6">
+            {!isLoading && characters.length > 0 ? (
+              <CharacterList
+                characters={characters}
+                onSelectCharacter={handleSelectCharacter}
+              />
+            ) : (
+              <p>No hay personajes disponibles</p>
+            )}
+          </div>
         </div>
       </div>
 
@@ -129,7 +163,9 @@ const Profile = () => {
             <div className="w-full px-4">
               <TabPanel>
                 {/* Contenido de la pestaña Amigos */}
-                <Friend />
+                {selectedCharacter && (
+                  <Friend character={selectedCharacter} token={user.token} />
+                )}
               </TabPanel>
               <TabPanel>
                 {/* Contenido de la pestaña Configuraciones */}

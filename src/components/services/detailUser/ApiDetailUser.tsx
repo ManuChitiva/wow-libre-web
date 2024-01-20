@@ -22,10 +22,36 @@ export interface UserDetail {
   date_of_birth: Date;
 }
 
+export interface Character {
+  id: 1;
+  name: String;
+  race: String;
+  gender: String;
+  class: String;
+  level: number;
+  xp: number;
+  money: number;
+  flags: String;
+  note: String;
+  race_id: number;
+  class_id: number;
+}
+
+export interface Friends {
+  friends: Character[];
+  total_quantity: number;
+}
+
+export interface Characters {
+  characters: Character[];
+  total_quantity: number;
+}
+
 export interface CharactersOnline {
   alliance: number;
   horde: number;
 }
+
 export const getUserDetail = async (jwt: string): Promise<UserDetail> => {
   try {
     const response = await fetch("http://localhost:8080/api/account/user", {
@@ -49,6 +75,59 @@ export const getUserDetail = async (jwt: string): Promise<UserDetail> => {
     console.error("Error:", error);
     throw new Error(
       `Ocurrió un error al intentar registrar los datos: ${error.message}`
+    );
+  }
+};
+
+export const getFriends = async (
+  jwt: string,
+  characterId: number
+): Promise<Friends> => {
+  console.log(characterId);
+  try {
+    const response = await fetch(
+      `http://localhost:8081/api/character/${characterId}/friends`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + jwt,
+        },
+      }
+    );
+    const responseData: GenericResponse<Friends> = await response.json();
+
+    if (response.ok && response.status === 200) {
+      return responseData.data;
+    }
+    throw new Error("Ha ocurrido un error al actualizar los datos");
+  } catch (error: any) {
+    console.error("Error:", error);
+    throw new Error(
+      `Ha ocurrido un error al actualizar los datos : ${error.message}`
+    );
+  }
+};
+
+export const getCharacters = async (jwt: string): Promise<Characters> => {
+  try {
+    const response = await fetch("http://localhost:8081/api/character", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + jwt,
+      },
+    });
+    const responseData: GenericResponse<Characters> = await response.json();
+
+    if (response.ok && response.status === 200) {
+      return responseData.data;
+    }
+    throw new Error("Ha ocurrido un error al actualizar los datos");
+  } catch (error: any) {
+    console.error("Error:", error);
+    throw new Error(
+      `Ha ocurrido un error al actualizar los datos : ${error.message}`
     );
   }
 };
