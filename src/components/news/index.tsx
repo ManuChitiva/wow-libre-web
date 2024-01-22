@@ -24,11 +24,11 @@ const News = () => {
   useEffect(() => {
     // Cambia la imagen basada en el componente seleccionado
     if (selectedLink === "noticias") {
-      setImageSrc("../resources/notice-4.jpg");
+      setImageSrc("../resources/seccion/notice-4.jpg");
     } else if (selectedLink === "jugadores") {
-      setImageSrc("../resources/notice-6.jpg");
+      setImageSrc("../resources/seccion/notice-6.jpg");
     } else if (selectedLink === "recursos") {
-      setImageSrc("../resources/notice-5.jpg");
+      setImageSrc("../resources/seccion/notice-5.jpg");
     }
   }, [selectedLink]);
 

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSave, faTimes, faEdit } from "@fortawesome/free-solid-svg-icons";
-import { UserDetail, updateUser } from "../services/detailUser/ApiDetailUser";
+import { UserDetail, updateUser } from "../services/account/account_api";
 import { UserModel } from "@/context/UserContext";
 import Swal from "sweetalert2";
 

@@ -14,7 +14,7 @@ import {
   UserDetail,
   getCharacters,
   getUserDetail,
-} from "@/components/services/detailUser/ApiDetailUser";
+} from "@/components/services/account/account_api";
 import { useUserContext } from "@/context/UserContext";
 import React, { useEffect, useState } from "react";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
@@ -22,15 +22,16 @@ import "react-tabs/style/react-tabs.css";
 import LoadingSpinner from "@/components/loading-spinner";
 import { useRouter } from "next/navigation";
 import Swal from "sweetalert2";
-import Friend from "@/components/friend";
 import ProfileDetail from "@/components/profile-detail/page";
-import CharacterList from "@/components/character";
+import CharacterSelection from "@/components/character_selection";
+import Friend from "@/components/friends/friend";
 
 const Profile = () => {
   const { user, setUser } = useUserContext();
   const [isLoading, setIsLoading] = useState(true);
   const [characters, setCharacters] = useState<Character[]>([]);
   const [selectedCharacter, setSelectedCharacter] = useState<Character>();
+  const router = useRouter();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -52,8 +53,6 @@ const Profile = () => {
     const fetchData = async () => {
       try {
         const response: UserDetail = await getUserDetail(user.token || "");
-        console.log(response.last_name);
-
         if (user) {
           setUser({
             ...user,
@@ -65,7 +64,6 @@ const Profile = () => {
             date_of_birth: response.date_of_birth,
           });
         }
-
         setIsLoading(false); // Marcamos la carga como completada
       } catch (error) {
         Swal.fire({
@@ -76,6 +74,7 @@ const Profile = () => {
           background: "#0B1218",
           timer: 4500,
         });
+        router.push("/");
       }
     };
 
@@ -83,7 +82,6 @@ const Profile = () => {
   }, [setIsLoading]);
 
   const handleSelectCharacter = (character: Character) => {
-    console.log("Personaje seleccionado:", character);
     setSelectedCharacter(character);
   };
 
@@ -118,7 +116,7 @@ const Profile = () => {
           <p className="text-gray-500 text-lg">Username: {user.username}</p>
           <div className="mt-6">
             {!isLoading && characters.length > 0 ? (
-              <CharacterList
+              <CharacterSelection
                 characters={characters}
                 onSelectCharacter={handleSelectCharacter}
               />

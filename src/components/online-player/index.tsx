@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import {
   CharactersOnline,
   getNumberCharactersOline,
-} from "../services/detailUser/ApiDetailUser";
+} from "../services/account/account_api";
 import Link from "next/link";
 import { useUserContext } from "@/context/UserContext";
 

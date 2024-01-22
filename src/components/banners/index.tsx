@@ -35,7 +35,7 @@ const Advertising = () => {
         showArrows={true}
         infiniteLoop={true}
         autoPlay={true}
-        interval={3000}
+        interval={9000}
         showThumbs={false}
         dynamicHeight={false}
         showIndicators={false}
