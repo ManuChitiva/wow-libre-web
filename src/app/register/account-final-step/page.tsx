@@ -59,7 +59,7 @@ const AccountFinalStep = () => {
       params.trinitycore,
       Buffer.from(salt),
       userName.toUpperCase(),
-      decryptPassword(user?.password || "").toUpperCase()
+      decryptPassword(user.password).toUpperCase()
     );
 
     try {

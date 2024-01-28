@@ -41,7 +41,7 @@ const Friend: React.FC<CharacterProps> = ({ character, token }) => {
     };
 
     fetchData();
-  }, [character, token, closeModal]);
+  }, [character]);
 
   if (!character || character == null) {
     return <p>Selecciona un personaje para mostrar detalles.</p>;

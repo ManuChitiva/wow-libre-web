@@ -16,7 +16,7 @@ export interface UserModel {
   email: string;
   password: string;
   password_web: string;
-  token: string | null;
+  token: string;
   logged_in: boolean;
   refresh_token: string | null;
   expiration_date: string | null;
@@ -35,7 +35,7 @@ const initialUserData: UserModel = {
   email: "",
   password: "",
   password_web: "",
-  token: null,
+  token: "",
   refresh_token: null,
   expiration_date: null,
   logged_in: false,

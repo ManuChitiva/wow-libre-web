@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSave, faTimes, faEdit } from "@fortawesome/free-solid-svg-icons";
-import { UserDetail, updateUser } from "../services/account/account_api";
+import { UserDetail, updateUser } from "../../services/account/account_api";
 import { UserModel } from "@/context/UserContext";
 import Swal from "sweetalert2";
 
@@ -10,7 +10,7 @@ interface ProfileDetailProps {
   setUser: React.Dispatch<React.SetStateAction<UserModel>>;
 }
 
-const ProfileDetail = ({ user, setUser }: ProfileDetailProps) => {
+const AccountDetail = ({ user, setUser }: ProfileDetailProps) => {
   const [isEditing, setIsEditing] = useState(false);
   const [editedUser, setEditedUser] = useState<UserModel>({ ...user });
 
@@ -73,7 +73,7 @@ const ProfileDetail = ({ user, setUser }: ProfileDetailProps) => {
 
   return (
     <div className="mx-auto mt-8">
-      <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+      <div className="bg-white px-8 pt-6 pb-8 mb-4">
         {/* Agrupando cada dos inputs en columnas */}
         <div className="grid grid-cols-2 gap-4">
           {/* Input  email*/}
@@ -81,6 +81,7 @@ const ProfileDetail = ({ user, setUser }: ProfileDetailProps) => {
             <label className="block text-gray-700 text-sm font-bold mb-2">
               Email
             </label>
+
             {!isEditing ? (
               <div className="flex items-center">
                 <span className="mr-2">{user.email}</span>
@@ -247,4 +248,4 @@ const ProfileDetail = ({ user, setUser }: ProfileDetailProps) => {
   );
 };
 
-export default ProfileDetail;
+export default AccountDetail;

@@ -7,6 +7,8 @@ import {
   faClipboard,
   faComment,
   faEnvelope,
+  faShieldHeart,
+  faCrown,
 } from "@fortawesome/free-solid-svg-icons";
 import {
   Character,
@@ -22,9 +24,11 @@ import "react-tabs/style/react-tabs.css";
 import LoadingSpinner from "@/components/loading-spinner";
 import { useRouter } from "next/navigation";
 import Swal from "sweetalert2";
-import ProfileDetail from "@/components/profile-detail/page";
 import CharacterSelection from "@/components/character_selection";
 import Friend from "@/components/friends/friend";
+import ProfileSecurityWeb from "@/components/profile/profile-security-web";
+import AccountDetail from "@/components/profile/account-detail/page";
+import ProfileSecurityIngame from "@/components/profile/profile-security-ingame";
 
 const Profile = () => {
   const { user, setUser } = useUserContext();
@@ -149,8 +153,12 @@ const Profile = () => {
                 Movimientos
               </Tab>
               <Tab className="py-4 px-6  hover:bg-gray-400 cursor-pointer text-lg font-semibold  flex items-center">
-                <FontAwesomeIcon icon={faExchangeAlt} className="mr-2" />
+                <FontAwesomeIcon icon={faShieldHeart} className="mr-2" />
                 Seguridad
+              </Tab>
+              <Tab className="py-4 px-6  hover:bg-gray-400 cursor-pointer text-lg font-semibold  flex items-center">
+                <FontAwesomeIcon icon={faCrown} className="mr-2" />
+                Cuenta
               </Tab>
             </TabList>
 
@@ -166,15 +174,15 @@ const Profile = () => {
                 )}
               </TabPanel>
               <TabPanel>
-                {/* Contenido de la pestaña Configuraciones */}
+                {/* Contenido de la pestaña Notificationes */}
                 <div className="p-4">
-                  Contenido de la pestaña Configuraciones
+                  Contenido de la pestaña Notificationes
                 </div>
               </TabPanel>
               <TabPanel>
                 {/* Contenido de la pestaña Perfil Detallado */}
                 <div className="p-4">
-                  <ProfileDetail user={user} setUser={setUser} />
+                  <AccountDetail user={user} setUser={setUser} />
                 </div>
               </TabPanel>
               <TabPanel>
@@ -183,7 +191,19 @@ const Profile = () => {
               </TabPanel>
               <TabPanel>
                 {/* Contenido de la pestaña Perfil Detallado */}
-                <div className="p-4">Contenido de la pestaña Seguridad</div>
+                <div className="p-4">
+                  <div>
+                    <ProfileSecurityWeb user={user} setUser={setUser} />
+                  </div>
+                </div>
+              </TabPanel>
+              <TabPanel>
+                {/* Contenido de la pestaña Perfil Detallado */}
+                <div className="p-4">
+                  <div>
+                    <ProfileSecurityIngame user={user} setUser={setUser} />
+                  </div>
+                </div>
               </TabPanel>
             </div>
           </div>
