@@ -8,12 +8,12 @@ import {
   faInfoCircle,
 } from "@fortawesome/free-solid-svg-icons";
 import Swal from "sweetalert2";
-import { gameChangePassword } from "@/components/services/auth/auth-service";
 import {
   ErrorResponseImpl,
   GenericError,
   GenericResponseImpl,
 } from "@/components/services/dto/generic";
+import { gameChangePassword } from "@/components/services/auth/account";
 const crypto = require("crypto");
 
 interface ProfileSecurityProps {
@@ -127,7 +127,7 @@ const ProfileSecurityIngame = ({ user, setUser }: ProfileSecurityProps) => {
   const handleCancelClick = () => {
     setIsEditing(false);
   };
-
+  console.log(user.account_banned);
   return (
     <div className="mx-auto mt-8">
       <div className="text-center mx-auto mt-8 max-w-2xl">
@@ -137,20 +137,87 @@ const ProfileSecurityIngame = ({ user, setUser }: ProfileSecurityProps) => {
           <br /> Sé el protagonista de tu epopeya en World of Warcraft,
           resguardando tus tesoros virtuales con una llave impenetrable.
         </h2>
+        <hr className="border-t-1 border-gray-300 my-4 mx-8" />
+
         <div className="text-center">
-          <h3 className="text-xl font-semibold text-green-500 mb-2">
-            Status: Activo
+          <h2 className="font-bold text-2xl"> Estado actual de la cuenta </h2>
+          <h3
+            className={`text-1xl font-semibold m-2 ${
+              user.account_banned?.active ? "text-red-500" : "text-green-500"
+            }`}
+          >
+            Su cuenta esta:{" "}
+            {user.account_banned?.active ? "Inhabilitada" : "Disponible"}
           </h3>
 
-          <p className="text-gray-700">
-            El cliente ha sido inhabilitado debido a acciones que violan
-            nuestras políticas. Por favor, contacta con nuestro soporte para
-            resolver este inconveniente.
-          </p>
+          {user.account_banned?.active && (
+            <>
+              <div className="grid grid-cols-2 gap-8">
+                <p className="text-gray-500 m-2 font-semibold">
+                  Fecha del bloqueo:
+                  <br />
+                  <span className="text-xs ml-2">
+                    {user.account_banned?.ban_date}
+                  </span>
+                </p>
+                <p className="text-gray-500 m-2 font-semibold">
+                  Fecha de desbloqueo:
+                  <br />
+                  <span className="text-xs">
+                    {user.account_banned?.unban_date}
+                  </span>
+                </p>
+              </div>
+              <p className="text-gray-700 m-4 font-semibold">
+                Bloqueado por:
+                <span className="text-red-500 ml-2">
+                  {user.account_banned?.banned_by}
+                </span>
+              </p>
+              <p className="text-gray-700 m-4 font-semibold text-xs">
+                Razón del bloqueo:
+                <span className="text-gray-500 ml-2">
+                  {user.account_banned?.reason}
+                </span>
+              </p>
+            </>
+          )}
+
+          {user.account_muted && user.account_banned == null && (
+            <>
+              <div className="grid grid-cols-2 gap-8">
+                <p className="text-gray-500 m-2 font-semibold">
+                  Fecha del muteo:
+                  <br />
+                  <span className="text-xs ml-2">
+                    {user.account_muted?.mute_date}
+                  </span>
+                </p>
+                <p className="text-gray-500 m-2 font-semibold">
+                  Fecha de desbloqueo:
+                  <br />
+                  <span className="text-xs">
+                    {user.account_muted?.mute_time}
+                  </span>
+                </p>
+              </div>
+              <p className="text-gray-700 m-4 font-semibold">
+                Ha sido silenciado por el GM <br />
+                <span className="text-red-500 ml-2">
+                  {user.account_muted?.muted_by}
+                </span>
+              </p>
+              <p className="text-gray-700 m-4 font-semibold text-xs">
+                Razón del muteo: <br />
+                <span className="text-gray-500 m-2">
+                  {user.account_muted?.reason}
+                </span>
+              </p>
+            </>
+          )}
         </div>
       </div>
       {/* Línea horizontal */}
-      <hr className="border-t-1 border-gray-300 my-4 mx-8" />
       <div className="bg-white   px-8 pt-6 pb-8 mb-9">
         {/* Agrupando cada dos inputs en columnas */}
         <div className="grid grid-cols-3 gap-4 mt-5">

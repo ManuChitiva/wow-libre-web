@@ -2,10 +2,10 @@
 import React from "react";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
-import advertisingBannerOne from "../../../public/resources/home/banner/banner_one.jpg";
-import advertisingBannerTwo from "../../../public/resources/home/banner/banner_two.jpg";
-import advertisingBannerThree from "../../../public/resources/home/banner/banner_three.jpg";
-import advertisingBannerFour from "../../../public/resources/home/banner/banner_four.jpg";
+import advertisingBannerOne from "../../../../public/resources/home/banner/banner_one.jpg";
+import advertisingBannerTwo from "../../../../public/resources/home/banner/banner_two.jpg";
+import advertisingBannerThree from "../../../../public/resources/home/banner/banner_three.jpg";
+import advertisingBannerFour from "../../../../public/resources/home/banner/banner_four.jpg";
 
 import Image from "next/image";
 

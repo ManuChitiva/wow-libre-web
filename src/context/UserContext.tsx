@@ -3,6 +3,21 @@ import React, { createContext, useContext, useState, useEffect } from "react";
 import Cookies from "js-cookie";
 
 // Definición del modelo de usuario
+export interface AccountBannedModel {
+  active: boolean;
+  reason: string;
+  ban_date: string;
+  banned_by: string;
+  unban_date: string;
+}
+
+export interface AccountMutedModel {
+  mute_date: string;
+  mute_time: string;
+  muted_by: string;
+  reason: string;
+}
+
 export interface UserModel {
   id: number;
   username: string;
@@ -20,6 +35,8 @@ export interface UserModel {
   logged_in: boolean;
   refresh_token: string | null;
   expiration_date: string | null;
+  account_banned: AccountBannedModel | null;
+  account_muted: AccountMutedModel | null;
 }
 
 const initialUserData: UserModel = {
@@ -39,7 +56,10 @@ const initialUserData: UserModel = {
   refresh_token: null,
   expiration_date: null,
   logged_in: false,
+  account_banned: null,
+  account_muted: null,
 };
+
 // Definición del contexto y sus tipos
 interface UserContextProps {
   user: UserModel;
@@ -57,7 +77,7 @@ interface UserProviderProps {
   children: React.ReactNode;
 }
 
-const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
+const UserProvider = ({ children }: UserProviderProps) => {
   let initialUser = initialUserData;
 
   // Verifica si estamos en el navegador (cliente)

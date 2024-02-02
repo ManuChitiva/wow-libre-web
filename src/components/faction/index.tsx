@@ -16,7 +16,7 @@ const Faction = () => {
         facción!
       </p>
       <img
-        src="../resources/logo-aliance.png"
+        src="../resources/home/faction/aliance.png"
         className="image-container inset-0 opacity-70 pt-20 max-w-sm max-h-full z-10 rounded-lg"
         alt="Imagen dinámica"
       />

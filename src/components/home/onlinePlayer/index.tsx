@@ -1,11 +1,12 @@
 "use client";
 import React, { useEffect, useState } from "react";
+
+import Link from "next/link";
+import { useUserContext } from "@/context/UserContext";
 import {
   CharactersOnline,
   getNumberCharactersOline,
-} from "../services/account/account_api";
-import Link from "next/link";
-import { useUserContext } from "@/context/UserContext";
+} from "@/components/services/public/online/characters";
 
 const Onlyplayers = () => {
   const [onlineCharacters, setOnlineCharacters] = useState<CharactersOnline>();
@@ -14,26 +15,34 @@ const Onlyplayers = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // Realiza la llamada a la API y obtén los datos
+        // Gets the number of online players
         const response = await getNumberCharactersOline();
-        console.log(response);
-        // Actualiza el estado con los datos obtenidos de la API
         setOnlineCharacters(response);
       } catch (error) {
-        console.error("Error al obtener datos de la API", error);
+        setOnlineCharacters({
+          alliance: 0,
+          horde: 0,
+        });
+        console.error("An error has occured. Please try again later.", error);
       }
     };
-
-    // Llama a la función para obtener datos cuando el componente se monta
     fetchData();
   }, []);
+
   const shouldRenderLink = user.logged_in;
 
   return (
-    <div className="flex flex-col items-center">
+    <div className="flex flex-col items-center container">
       <div className="text-center mt-4">
         <h2 className="text-2xl font-bold">Jugadores Online</h2>
-        <hr className="border my-2" />
+        <hr className="border my-2 " />
+        <p>
+          {" "}
+          La información sobre jugadores en línea se actualiza cada 5 minutos
+          para ofrecer la mejor precisión posible. Apreciamos tu comprensión y
+          paciencia mientras mantenemos la integridad de los datos en tiempo
+          real.
+        </p>
       </div>
       <div className="flex flex-col items-start mt-4">
         <div className="mb-4 flex items-center">
@@ -65,7 +74,17 @@ const Onlyplayers = () => {
           </div>
         </div>
       </div>
+
       {shouldRenderLink && (
+        <Link
+          href="/profile"
+          className="bg-blue-700  text-white py-3 px-6 rounded-lg hover:bg-blue-600 mt-10"
+        >
+          Ir a la batalla
+        </Link>
+      )}
+
+      {!shouldRenderLink && (
         <Link
           href="/register"
           className="bg-blue-700  text-white py-3 px-6 rounded-lg hover:bg-blue-600 mt-10"

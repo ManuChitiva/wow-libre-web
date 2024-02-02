@@ -1,3 +1,5 @@
+import { AccountBannedModel, AccountMutedModel } from "@/context/UserContext";
+
 export interface RegistrationData {}
 
 export interface GenericResponse<T> {
@@ -20,6 +22,8 @@ export interface UserDetail {
   cell_phone: string;
   email: string;
   date_of_birth: Date;
+  account_banned: AccountBannedModel;
+  account_muted: AccountMutedModel;
 }
 
 export interface Character {
@@ -45,11 +49,6 @@ export interface Friends {
 export interface Characters {
   characters: Character[];
   total_quantity: number;
-}
-
-export interface CharactersOnline {
-  alliance: number;
-  horde: number;
 }
 
 export const getUserDetail = async (jwt: string): Promise<UserDetail> => {
@@ -160,35 +159,6 @@ export const updateUser = async (
   }
 };
 
-export const getNumberCharactersOline = async (): Promise<CharactersOnline> => {
-  try {
-    const response = await fetch(
-      "http://localhost:8081/api/character/number/online",
-      {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
-    const responseData: GenericResponse<CharactersOnline> =
-      await response.json();
-
-    if (response.ok && response.status === 200) {
-      return responseData.data;
-    } else if (response.status >= 400) {
-      throw new Error("Error al Obtener los datos");
-    }
-
-    // Agregar un retorno por defecto en caso de otros casos no contemplados
-    throw new Error("Error desconocido al obtener los datos");
-  } catch (error: any) {
-    console.error("Error:", error);
-    throw new Error(
-      `Ocurrió un error al intentar registrar los datos: ${error.message}`
-    );
-  }
-};
 export const deleteFriend = async (
   jwt: String,
   characterId: number,

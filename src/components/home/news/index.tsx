@@ -2,35 +2,37 @@
 import React, { useEffect, useState } from "react";
 import "./index.css";
 import Announcement from "../announcement";
-import Onlyplayers from "../online-player";
-import ResourcesServer from "../resources-server";
+import Onlyplayers from "../onlinePlayer";
+import ResourcesServer from "../resourcesServer";
+
+const ANNOUNCEMENT = "announcement";
+const ONLINE_PLAYERS = "onlinePlayers";
+const RESOURCES = "resources";
 
 const News = () => {
-  const [selectedLink, setSelectedLink] = useState("noticias");
-  const [imageSrc, setImageSrc] = useState(
-    "https://i.postimg.cc/CL9xmRM5/3shots-so-1.png"
-  );
+  const [selectedSection, setSelectedSection] = useState(ANNOUNCEMENT);
+  const [resourceImg, setImageSrc] = useState("");
 
   const renderComponent = () => {
-    if (selectedLink === "noticias") {
+    if (selectedSection === ANNOUNCEMENT) {
       return <Announcement />;
-    } else if (selectedLink === "jugadores") {
+    } else if (selectedSection === ONLINE_PLAYERS) {
       return <Onlyplayers />;
-    } else if (selectedLink === "recursos") {
+    } else if (selectedSection === RESOURCES) {
       return <ResourcesServer />;
     }
   };
 
   useEffect(() => {
     // Cambia la imagen basada en el componente seleccionado
-    if (selectedLink === "noticias") {
+    if (selectedSection === ANNOUNCEMENT) {
       setImageSrc("../resources/seccion/notice-4.jpg");
-    } else if (selectedLink === "jugadores") {
+    } else if (selectedSection === ONLINE_PLAYERS) {
       setImageSrc("../resources/seccion/notice-6.jpg");
-    } else if (selectedLink === "recursos") {
+    } else if (selectedSection === RESOURCES) {
       setImageSrc("../resources/seccion/notice-5.jpg");
     }
-  }, [selectedLink]);
+  }, [selectedSection]);
 
   return (
     <div className="seccion-news container">
@@ -39,7 +41,7 @@ const News = () => {
           <li className="item-navbar-carrousel hover:text-orange-400">
             <a
               className={"selected-link"}
-              onClick={() => setSelectedLink("noticias")}
+              onClick={() => setSelectedSection(ANNOUNCEMENT)}
             >
               Anuncio
             </a>
@@ -47,7 +49,7 @@ const News = () => {
           <li className="item-navbar-carrousel hover:text-orange-400">
             <a
               className={"selected-link"}
-              onClick={() => setSelectedLink("jugadores")}
+              onClick={() => setSelectedSection(ONLINE_PLAYERS)}
             >
               Jugadores Online
             </a>
@@ -55,7 +57,7 @@ const News = () => {
           <li className="item-navbar-carrousel hover:text-orange-400">
             <a
               className={"selected-link"}
-              onClick={() => setSelectedLink("recursos")}
+              onClick={() => setSelectedSection(RESOURCES)}
             >
               Conexion
             </a>
@@ -72,7 +74,7 @@ const News = () => {
       <div className="hidden md:block w-1/3 text-white news-container">
         <div className="image-container absolute inset-0 opacity-70 rounded-full">
           <img
-            src={imageSrc}
+            src={resourceImg}
             style={{
               maxWidth: "100%",
               maxHeight: "100%",

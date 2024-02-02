@@ -28,7 +28,7 @@ import CharacterSelection from "@/components/character_selection";
 import Friend from "@/components/friends/friend";
 import ProfileSecurityWeb from "@/components/profile/profile-security-web";
 import AccountDetail from "@/components/profile/account-detail/page";
-import ProfileSecurityIngame from "@/components/profile/profile-security-ingame";
+import ProfileSecurityIngame from "@/components/profile/profileSecurityIngame";
 
 const Profile = () => {
   const { user, setUser } = useUserContext();
@@ -66,6 +66,8 @@ const Profile = () => {
             last_name: response.last_name,
             first_name: response.first_name,
             date_of_birth: response.date_of_birth,
+            account_banned: response.account_banned,
+            account_muted: response.account_muted,
           });
         }
         setIsLoading(false); // Marcamos la carga como completada
@@ -91,7 +93,7 @@ const Profile = () => {
 
   if (isLoading) {
     return (
-      <div className="flex items-center justify-center h-screen">
+      <div className="flex items-center justify-center ">
         {/* Puedes utilizar cualquier spinner o animación de carga aquí */}
         <div className="flex flex-col items-center">
           <LoadingSpinner />{" "}

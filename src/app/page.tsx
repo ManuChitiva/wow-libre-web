@@ -1,9 +1,9 @@
-import Advertising from "@/components/banners";
+import Advertising from "@/components/home/banners";
 import Faction from "@/components/faction";
-import News from "@/components/news";
+import News from "@/components/home/news";
 import Benefits from "@/components/partners";
 import Subscription from "@/components/subscription";
-import Us from "@/components/us";
+import Us from "@/components/home/us";
 
 const page = () => {
   return (

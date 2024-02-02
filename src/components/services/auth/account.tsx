@@ -4,7 +4,7 @@ import {
   GenericError,
   InternalError,
 } from "../dto/generic";
-import { BASE_URL } from "../../../configs/configs";
+import { BASE_URL_AUTH } from "../../../configs/configs";
 
 interface UserModelSecurity {
   salt: String;
@@ -16,14 +16,17 @@ export const gameChangePassword = async (
   jwt: string,
   userSecurity: UserModelSecurity
 ): Promise<void> => {
-  const response = await fetch(`${BASE_URL}/api/account/password/change/game`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: "Bearer " + jwt,
-    },
-    body: JSON.stringify(userSecurity),
-  });
+  const response = await fetch(
+    `${BASE_URL_AUTH}/api/account/password/change/game`,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + jwt,
+      },
+      body: JSON.stringify(userSecurity),
+    }
+  );
 
   console.log(response.status);
   if (response && response.ok && response.status === 200) {
