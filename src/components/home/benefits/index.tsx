@@ -4,7 +4,10 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./index.css";
-import { BenefitModel, getBenefit } from "../services/resources/ApiBenefits";
+import {
+  BenefitModel,
+  getBenefit,
+} from "../../services/public/resources/benefits";
 
 const Benefits = () => {
   const [partners, setPartners] = useState<BenefitModel[]>();
@@ -14,15 +17,12 @@ const Benefits = () => {
       try {
         // Realiza la llamada a la API y obtén los datos
         const response = await getBenefit();
-        console.log(response);
-        // Actualiza el estado con los datos obtenidos de la API
         setPartners(response);
       } catch (error) {
         console.error("Error al obtener datos de la API", error);
       }
     };
 
-    // Llama a la función para obtener datos cuando el componente se monta
     fetchData();
   }, []);
 

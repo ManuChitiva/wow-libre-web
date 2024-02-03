@@ -1,17 +1,17 @@
+import { BASE_URL_AUTH } from "@/configs/configs";
 import {
   ErrorResponseImpl,
-  GenericResponseImpl,
   GenericError,
+  GenericResponseImpl,
   InternalError,
-} from "../dto/generic";
-import { BASE_URL_AUTH } from "../../../configs/configs";
+} from "../../dto/generic";
 
 interface UserModelSecurity {
   salt: String;
   verifier: String;
   password: String;
 }
-
+// API para cambiar la contraseña del juego del usuario
 export const gameChangePassword = async (
   jwt: string,
   userSecurity: UserModelSecurity

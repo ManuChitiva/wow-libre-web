@@ -1,11 +1,11 @@
 import React from "react";
 
-interface TitleRegisterProps {
+interface TitleWowProps {
   title: string;
   description: string;
 }
 
-const TitleRegister = ({ title, description }: TitleRegisterProps) => {
+const TitleWow = ({ title, description }: TitleWowProps) => {
   return (
     <>
       <h2 className="text-center mb-11 text-4xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-6xl title-wow ">
@@ -20,4 +20,4 @@ const TitleRegister = ({ title, description }: TitleRegisterProps) => {
   );
 };
 
-export default TitleRegister;
+export default TitleWow;

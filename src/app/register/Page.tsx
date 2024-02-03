@@ -6,12 +6,13 @@ import { useUserContext } from "@/context/UserContext";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useRouter } from "next/navigation";
-import TitleRegister from "@/components/register-title";
-import PageCounter from "@/components/page-counter";
+import PageCounter from "@/components/register/pageCounter";
+
+import TitleWow from "@/components/register/titleWow";
 import {
-  getCountry,
   CountryModel,
-} from "@/components/services/resources/ApiResources";
+  getCountry,
+} from "@/components/services/public/resources/country";
 
 const defaultCountryOptions: CountryModel[] = [
   { value: "Otro", label: "Otro" },
@@ -86,8 +87,8 @@ const Register = () => {
   return (
     <div className="bg-midnight text-white container-heigth">
       <div className="container">
-        <div className="mt-20">
-          <TitleRegister
+        <div className="pt-20">
+          <TitleWow
             title=" Registrarme en "
             description="¡Toda la información que nos compartas en Wow Libre es como el
           ingrediente especial de tu experiencia alucinante! Cuanto más sepamos,
@@ -123,7 +124,7 @@ const Register = () => {
 
             <PageCounter currentSection={1} totalSections={7} />
             <button
-              className="bg-blue-500 text-white px-3 py-2 rounded-md mt-8 "
+              className="bg-blue-500 text-white px-3 py-2 rounded-md mt-8"
               type="submit"
             >
               Continuar

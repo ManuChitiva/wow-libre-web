@@ -1,6 +1,6 @@
 "use client";
-import PageCounter from "@/components/page-counter";
-import TitleRegister from "@/components/register-title";
+import PageCounter from "@/components/register/pageCounter";
+import TitleRegister from "@/components/register/titleWow";
 import React, { ChangeEvent, useEffect, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import { useRouter } from "next/navigation";

@@ -5,8 +5,8 @@ import { useUserContext } from "@/context/UserContext";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useRouter } from "next/navigation";
-import TitleRegister from "@/components/register-title";
-import PageCounter from "@/components/page-counter";
+import TitleRegister from "@/components/register/titleWow";
+import PageCounter from "@/components/register/pageCounter";
 
 const ContactMeans = () => {
   const { user, setUser } = useUserContext(); // Obteniendo el contexto y funciones del contexto
