@@ -12,7 +12,7 @@ import {
   convertToErrorBadRequest,
   registerUser,
 } from "@/components/services/register/ApiService";
-import { decryptPassword } from "@/components/Security";
+import { decryptPassword } from "@/components/security";
 const crypto = require("crypto");
 
 const AccountFinalStep = () => {

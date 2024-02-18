@@ -127,7 +127,7 @@ const ProfileSecurityIngame = ({ user, setUser }: ProfileSecurityProps) => {
   const handleCancelClick = () => {
     setIsEditing(false);
   };
-  console.log(user.account_banned);
+
   return (
     <div className="mx-auto mt-8">
       <div className="text-center mx-auto mt-8 max-w-2xl">
@@ -218,9 +218,9 @@ const ProfileSecurityIngame = ({ user, setUser }: ProfileSecurityProps) => {
         </div>
       </div>
       {/* Línea horizontal */}
-      <div className="bg-white   px-8 pt-6 pb-8 mb-9">
-        {/* Agrupando cada dos inputs en columnas */}
-        <div className="grid grid-cols-3 gap-4 mt-5">
+      <div className="bg-white px-8 pt-6 pb-8 mb-9">
+        {/* Agrupando cada dos inputs en columnas, cambiando a una sola columna en dispositivos móviles */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-5">
           {/* Input password */}
           <div className="mb-4">
             <label className="block text-gray-700 text-sm font-bold mb-2">
@@ -257,7 +257,7 @@ const ProfileSecurityIngame = ({ user, setUser }: ProfileSecurityProps) => {
             )}
           </div>
 
-          {/* Input  new password*/}
+          {/* Input new password */}
           <div className="mb-4">
             <label className="block text-gray-700 text-sm font-bold mb-2">
               Nueva Contraseña
@@ -278,7 +278,7 @@ const ProfileSecurityIngame = ({ user, setUser }: ProfileSecurityProps) => {
             )}
           </div>
 
-          {/* Input  confirm password*/}
+          {/* Input confirm password */}
           <div className="mb-4">
             <label className="block text-gray-700 text-sm font-bold mb-2">
               Confirmar Contraseña

@@ -75,13 +75,12 @@ const AccountDetail = ({ user, setUser }: ProfileDetailProps) => {
     <div className="mx-auto mt-8">
       <div className="bg-white px-8 pt-6 pb-8 mb-4">
         {/* Agrupando cada dos inputs en columnas */}
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {/* Input  email*/}
           <div className="mb-4">
             <label className="block text-gray-700 text-sm font-bold mb-2">
               Email
             </label>
-
             {!isEditing ? (
               <div className="flex items-center">
                 <span className="mr-2">{user.email}</span>
@@ -216,7 +215,7 @@ const AccountDetail = ({ user, setUser }: ProfileDetailProps) => {
                         )
                           .toISOString()
                           .substr(0, 10)
-                      : editedUser.date_of_birth || "" // Si es null, establecer un valor vacío para evitar errores
+                      : editedUser.date_of_birth || ""
                   }
                   onChange={(e) => handleInputChange(e, "date_of_birth")}
                   className="border rounded py-2 px-3 text-gray-700 focus:outline-none focus:ring focus:border-blue-500"
@@ -225,6 +224,7 @@ const AccountDetail = ({ user, setUser }: ProfileDetailProps) => {
             )}
           </div>
         </div>
+
         {isEditing && (
           <div className="flex justify-end mt-4">
             <button

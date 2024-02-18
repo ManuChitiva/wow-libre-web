@@ -5,7 +5,7 @@ import React, { ChangeEvent, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 import { useUserContext } from "@/context/UserContext";
-import { encryptPassword } from "@/components/Security";
+import { encryptPassword } from "@/components/security";
 
 const RegisterPassword = () => {
   const { user, setUser } = useUserContext(); // Obteniendo el contexto y funciones del contexto

@@ -26,7 +26,7 @@ import { useRouter } from "next/navigation";
 import Swal from "sweetalert2";
 import CharacterSelection from "@/components/character_selection";
 import Friend from "@/components/friends/friend";
-import ProfileSecurityWeb from "@/components/profile/profile-security-web";
+import ProfileSecurityWeb from "@/components/profile/profileSecurityWeb";
 import AccountDetail from "@/components/profile/account-detail/page";
 import ProfileSecurityIngame from "@/components/profile/profileSecurityIngame";
 
@@ -105,9 +105,9 @@ const Profile = () => {
   }
 
   return (
-    <div className="container  mx-auto py-20  mb-">
+    <div className="container mx-auto py-20">
       {/* Sección de perfil */}
-      <div className="flex flex-col  items-center justify-center">
+      <div className="flex flex-col items-center justify-center">
         <img
           src="https://via.placeholder.com/150"
           alt="Avatar del usuario"
@@ -136,36 +136,37 @@ const Profile = () => {
       {/* Secciones con pestañas */}
       <div className="mt-6 border border-gray-300 rounded-lg overflow-hidden">
         <Tabs>
-          <div className="flex">
-            <TabList className="flex flex-col  border-r">
-              <Tab className="py-4 px-6 hover:bg-gray-400 cursor-pointer text-lg font-semibold  flex items-center">
+          <div className="flex flex-col lg:flex-row">
+            {/* TabList para móviles (oculto en pantallas grandes) */}
+            <TabList className=" flex flex-col border-b">
+              <Tab className="py-4 px-6 hover:bg-gray-400 cursor-pointer text-lg font-semibold flex items-center">
                 <FontAwesomeIcon icon={faComment} className="mr-2" />
                 Amigos
               </Tab>
-              <Tab className="py-4 px-6 hover:bg-gray-400 cursor-pointer text-lg font-semibold  flex items-center">
+              <Tab className="py-4 px-6 hover:bg-gray-400 cursor-pointer text-lg font-semibold flex items-center">
                 <FontAwesomeIcon icon={faEnvelope} className="mr-2" />
                 Notificaciones
               </Tab>
-              <Tab className="py-4 px-6  hover:bg-gray-400 cursor-pointer text-lg font-semibold  flex items-center">
+              <Tab className="py-4 px-6 hover:bg-gray-400 cursor-pointer text-lg font-semibold flex items-center">
                 <FontAwesomeIcon icon={faUser} className="mr-2" />
                 Perfil
               </Tab>
-              <Tab className="py-4 px-6  hover:bg-gray-400 cursor-pointer text-lg font-semibold  flex items-center">
+              <Tab className="py-4 px-6 hover:bg-gray-400 cursor-pointer text-lg font-semibold flex items-center">
                 <FontAwesomeIcon icon={faClipboard} className="mr-2" />
                 Movimientos
               </Tab>
-              <Tab className="py-4 px-6  hover:bg-gray-400 cursor-pointer text-lg font-semibold  flex items-center">
+              <Tab className="py-4 px-6 hover:bg-gray-400 cursor-pointer text-lg font-semibold flex items-center">
                 <FontAwesomeIcon icon={faShieldHeart} className="mr-2" />
                 Seguridad
               </Tab>
-              <Tab className="py-4 px-6  hover:bg-gray-400 cursor-pointer text-lg font-semibold  flex items-center">
+              <Tab className="py-4 px-6 hover:bg-gray-400 cursor-pointer text-lg font-semibold flex items-center">
                 <FontAwesomeIcon icon={faCrown} className="mr-2" />
                 Cuenta
               </Tab>
             </TabList>
 
-            {/* Separadores verticales */}
-            <div className="border-l border-gray-300"></div>
+            {/* Separadores verticales (ocultos en pantallas pequeñas) */}
+            <div className="lg:border-l border-gray-300 hidden lg:block"></div>
 
             {/* Paneles de las pestañas */}
             <div className="w-full px-4">
@@ -176,9 +177,9 @@ const Profile = () => {
                 )}
               </TabPanel>
               <TabPanel>
-                {/* Contenido de la pestaña Notificationes */}
+                {/* Contenido de la pestaña Notificaciones */}
                 <div className="p-4">
-                  Contenido de la pestaña Notificationes
+                  Contenido de la pestaña Notificaciones
                 </div>
               </TabPanel>
               <TabPanel>
@@ -188,23 +189,19 @@ const Profile = () => {
                 </div>
               </TabPanel>
               <TabPanel>
-                {/* Contenido de la pestaña Perfil Detallado */}
+                {/* Contenido de la pestaña Transacciones */}
                 <div className="p-4">Contenido de la pestaña Transacciones</div>
               </TabPanel>
               <TabPanel>
-                {/* Contenido de la pestaña Perfil Detallado */}
+                {/* Contenido de la pestaña Seguridad Web */}
                 <div className="p-4">
-                  <div>
-                    <ProfileSecurityWeb user={user} setUser={setUser} />
-                  </div>
+                  <ProfileSecurityWeb user={user} setUser={setUser} />
                 </div>
               </TabPanel>
               <TabPanel>
-                {/* Contenido de la pestaña Perfil Detallado */}
+                {/* Contenido de la pestaña Seguridad Ingame */}
                 <div className="p-4">
-                  <div>
-                    <ProfileSecurityIngame user={user} setUser={setUser} />
-                  </div>
+                  <ProfileSecurityIngame user={user} setUser={setUser} />
                 </div>
               </TabPanel>
             </div>
