@@ -10,8 +10,10 @@ const page = () => {
     <>
       <div className="bg-midnight ">
         <Advertising />
+
         <News />
         <Us />
+
         <Subscription />
         <Benefits />
         <Faction />

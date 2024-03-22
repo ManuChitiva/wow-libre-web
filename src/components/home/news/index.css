@@ -10,17 +10,18 @@
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  width: 2%;
+  width: 6%;
   align-items: center;
   height: 0%;
   transform: rotate(270deg);
 }
 
 .news-carrousel-items {
+  padding-right: 20rem;
   display: flex;
   justify-content: space-around;
-  flex-direction: row;
-  gap: 30px;
+  flex-direction: center;
+  gap: 50px;
   width: 60%;
 }
 
