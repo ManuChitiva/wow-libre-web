@@ -13,7 +13,7 @@ import {
   GenericError,
   GenericResponseImpl,
 } from "@/components/services/dto/generic";
-import { gameChangePassword } from "@/components/services/auth/account/security";
+import { gameChangePassword } from "@/components/services/apis/auth/account/security";
 const crypto = require("crypto");
 
 interface ProfileSecurityProps {

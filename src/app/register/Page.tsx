@@ -12,11 +12,10 @@ import TitleWow from "@/components/register/titleWow";
 import {
   CountryModel,
   getCountry,
-} from "@/components/services/public/resources/country";
+} from "@/components/services/apis/resources/country";
 
 const defaultCountryOptions: CountryModel[] = [
-  { value: "Otro", label: "Otro" },
-  // Otras opciones predeterminadas si las hay
+  { value: "Otro", label: "Otro", language: "es", site: "wow" },
 ];
 
 const Register = () => {
@@ -34,7 +33,7 @@ const Register = () => {
         const fetchedCountryOptions = await getCountry();
         setCountryOptions(fetchedCountryOptions);
       } catch (error) {
-        console.error("Error al obtener países:", error);
+        setCountryOptions(defaultCountryOptions);
       }
     };
     fetchData();
@@ -85,25 +84,24 @@ const Register = () => {
   }, [setUser]);
 
   return (
-    <div className="bg-midnight text-white container-heigth">
-      <div className="container">
-        <div className="pt-20">
-          <TitleWow
-            title=" Registrarme en "
-            description="¡Toda la información que nos compartas en Wow Libre es como el
+    <div className="bg-midnight text-white min-h-screen flex items-center justify-center">
+      <div className="min-h-1/2 max-h-90vh w-full ">
+        <TitleWow
+          title=" Registrarme en "
+          description="¡Toda la información que nos compartas en Wow Libre es como el
           ingrediente especial de tu experiencia alucinante! Cuanto más sepamos,
           mejor podremos hacerte vivir algo realmente extraordinario. Así que,
           ¡compártenos esos datos y prepárate para algo fuera de serie!"
-          />
-        </div>
+        />
 
-        <div className="items-center pt-4">
-          <form className="mt-4 flex flex-col " onSubmit={handleFormSubmit}>
+        <div className="items-center pt-2 container">
+          <form className="mt-2 flex flex-col " onSubmit={handleFormSubmit}>
             <label htmlFor="countrySelect" className="mb-2">
               Selecciona el país
             </label>
             <Select
-              className="mb-4  border rounded-md text-black"
+              instanceId={"wsad123wqwe"}
+              className="mb-3  border rounded-md text-black"
               options={countryOptions}
               value={countryOptions.find((option) => option.value === country)}
               onChange={handleCountryChange}
@@ -114,7 +112,7 @@ const Register = () => {
               Fecha de Nacimiento
             </label>
             <input
-              className="mb-4 px-4 py-2 border rounded-md text-black"
+              className="mb-3 px-4 py-2 border rounded-md text-black"
               type="date"
               id="fechaInput"
               name="fechaInput"

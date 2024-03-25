@@ -2,7 +2,7 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <div className="pl-2 pt-10 grid gap-4 justify-items-center py-6 bg-midnight sm:flex sm:justify-between sm:items-center">
+    <div className="grid gap-4 justify-items-center py-6 bg-midnight sm:flex sm:justify-between sm:items-center">
       <div className="flex flex-col items-center text-center sm:ml-4">
         <p className="text-white mb-2 title-wow">
           Síguenos en nuestras redes sociales

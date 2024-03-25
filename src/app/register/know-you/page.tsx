@@ -72,23 +72,21 @@ const KnowYou = () => {
   }, [setUser]);
 
   return (
-    <div className="bg-midnight text-white container-heigth">
-      <div className="container">
-        <div className="mt-20">
-          <TitleRegister
-            title=" Registrarme en "
-            description=" Es posible que se utilice tu nombre real en el 
+    <div className="bg-midnight text-white min-h-screen flex items-center justify-center">
+      <div className="min-h-1/2 max-h-90vh w-full  ">
+        <TitleRegister
+          title=" Registrarme en "
+          description=" Es posible que se utilice tu nombre real en el 
           futuro para verificar tu identidad cuando te pongas en contacto con WowLibre. 
           Por defecto, tu nombre real permanecerá oculto para otros usuarios."
-          />
-        </div>
-        <div className="items-center pt-4">
-          <form className="mt-4 flex flex-col" onSubmit={handleFormSubmit}>
+        />
+        <div className="items-center pt-2 container">
+          <form className="mt-2 flex flex-col" onSubmit={handleFormSubmit}>
             <label htmlFor="lastNameInput" className="mb-2">
               Ingrese su nombre
             </label>
             <input
-              className="mb-4 px-4 py-2 border rounded-md text-black"
+              className="mb-3 px-4 py-2 border rounded-md text-black"
               type="text"
               placeholder="Ingrese sus nombres"
               value={lastName}
@@ -98,7 +96,7 @@ const KnowYou = () => {
               Ingrese sus apellidos
             </label>
             <input
-              className="mb-4 px-4 py-2 border rounded-md text-black"
+              className="mb-3 px-4 py-2 border rounded-md text-black"
               type="text"
               placeholder="Ingrese sus apellidos"
               value={firstName}
@@ -108,13 +106,13 @@ const KnowYou = () => {
             <PageCounter currentSection={2} totalSections={7} />
 
             <button
-              className="bg-blue-500 text-white px-3 py-2 rounded-md mt-8 "
+              className="bg-blue-500 text-white px-3 py-2 rounded-md mt-8"
               type="submit"
             >
               Continuar
             </button>
             <button
-              className="bg-blue-500 text-white px-3 py-2 rounded-md mt-8 "
+              className="bg-blue-500 text-white px-3 py-2 rounded-md mt-8"
               type="button" // Asegúrate de cambiar el tipo a "button"
               onClick={handleVolverClick} // Agrega el evento onClick
             >

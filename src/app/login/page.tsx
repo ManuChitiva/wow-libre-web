@@ -68,11 +68,11 @@ const Login = () => {
   return (
     <>
       {/* Same as */}
-      <div className="flex flex-col items-center justify-center bg-midnight text-white container-heigth">
+      <div className="flex flex-col items-center min-h-screen justify-center bg-midnight text-white ">
         <img
           src="/resources/login.png"
           alt="Ejemplo"
-          className="w-50 h-auto"
+          className="w-60 h-auto"
           style={{ pointerEvents: "none", outline: "none" }}
         />
         <h2 className="title-wow text-center text-4xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-4xl">

@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { ChangeEvent, useState } from "react";
 import { faSave, faTimes, faEdit } from "@fortawesome/free-solid-svg-icons";
 import Swal from "sweetalert2";
-import { webChangePassword } from "@/components/services/auth/account/security";
+import { webChangePassword } from "@/components/services/apis/auth/account/security";
 import { GenericError } from "@/components/services/dto/generic";
 
 interface ProfileSecurityProps {

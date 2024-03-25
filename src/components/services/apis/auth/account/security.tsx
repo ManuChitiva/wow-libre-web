@@ -4,7 +4,7 @@ import {
   GenericError,
   GenericResponseImpl,
   InternalError,
-} from "../../dto/generic";
+} from "../../../dto/generic";
 
 interface UserModelSecurity {
   salt: String;

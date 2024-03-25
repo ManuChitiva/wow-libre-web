@@ -67,15 +67,14 @@ const AccountWeb = () => {
   };
 
   return (
-    <div className="bg-midnight text-white container-heigth">
-      <div className="container">
-        <div className="mt-20">
-          <TitleRegister
-            title=" Registrarme en "
-            description="Protege tu cuenta y elige una contraseña segura para la web administrativa."
-          />
-        </div>
-        <div className="items-center pt-4">
+    <div className="bg-midnight text-white min-h-screen flex items-center justify-center">
+      <div className="min-h-1/2 max-h-90vh w-full">
+        <TitleRegister
+          title=" Registrarme en "
+          description="Protege tu cuenta y elige una contraseña segura para la web administrativa."
+        />
+
+        <div className="items-center pt-2 container">
           <form className="mt-4 flex flex-col" onSubmit={handleFormSubmit}>
             <label htmlFor="passwordInput" className="mb-2">
               Contraseña para la web

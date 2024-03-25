@@ -1,6 +1,6 @@
 import React from "react";
 
-const WoWSupport: React.FC = () => {
+const CustomerSupport: React.FC = () => {
   return (
     <div className="bg-black p-6 rounded-md shadow-lg text-white">
       <h2 className="text-2xl font-bold mb-4">Soporte World of Warcraft</h2>
@@ -28,4 +28,4 @@ const WoWSupport: React.FC = () => {
   );
 };
 
-export default WoWSupport;
+export default CustomerSupport;

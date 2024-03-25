@@ -42,17 +42,21 @@ export const registerUser = async (
     });
 
     const responseData = await response.json();
-
     if (response.ok && response.status === 201) {
       return responseData;
-    } else if (response.status === 400) {
+    } else if (response.status == 400) {
       const badRequestError: GenericResponse<ErrorBadRequest> = responseData;
       return badRequestError;
+    } else if (response.status == 409) {
+      console.log("Error 409");
+      return responseData;
     } else {
-      throw new Error(`Ocurrió un error al intentar registrar los datos`);
+      const errorMessage = await response.text();
+      throw new Error(
+        `Ocurrió un error al intentar registrar los datos: ${errorMessage}`
+      );
     }
   } catch (error: any) {
-    console.error("Error:", error);
     throw new Error(
       `Ocurrió un error al intentar registrar los datos: ${error.message}`
     );

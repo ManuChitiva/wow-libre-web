@@ -7,7 +7,7 @@ import "./index.css";
 import {
   BenefitModel,
   getBenefit,
-} from "../../services/public/resources/benefits";
+} from "../../services/apis/resources/benefits";
 
 const Benefits = () => {
   const [partners, setPartners] = useState<BenefitModel[]>();

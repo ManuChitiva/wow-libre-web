@@ -2,7 +2,6 @@
 import PageCounter from "@/components/register/pageCounter";
 import TitleRegister from "@/components/register/titleWow";
 import React, { ChangeEvent, useState } from "react";
-import { ToastContainer, toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 import { useUserContext } from "@/context/UserContext";
 import {
@@ -13,6 +12,7 @@ import {
   registerUser,
 } from "@/components/services/register/ApiService";
 import { decryptPassword } from "@/components/security";
+import Swal from "sweetalert2";
 const crypto = require("crypto");
 
 const AccountFinalStep = () => {
@@ -29,21 +29,26 @@ const AccountFinalStep = () => {
     event.preventDefault();
 
     if (!userName.trim()) {
-      toast.error("Ingrese un usuario.", {
-        position: toast.POSITION.BOTTOM_LEFT,
-        className: "toast-message",
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Ingrese un usuario.",
+        color: "white",
+        background: "#0B1218",
+        timer: 4500,
       });
       return;
     }
 
     if (userName.trim().length < 5 || userName.trim().length > 40) {
-      toast.error(
-        "La contraseña debe ser superior a 5 caracteres e inferior a 40 caracteres.",
-        {
-          position: toast.POSITION.BOTTOM_LEFT,
-          className: "toast-message",
-        }
-      );
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "La contraseña debe ser superior a 5 caracteres e inferior a 40 caracteres.",
+        color: "white",
+        background: "#0B1218",
+        timer: 4500,
+      });
       return;
     }
 
@@ -55,6 +60,7 @@ const AccountFinalStep = () => {
     }
 
     const salt = crypto.randomBytes(32);
+
     const verifier = computeVerifier(
       params.trinitycore,
       Buffer.from(salt),
@@ -63,12 +69,15 @@ const AccountFinalStep = () => {
     );
 
     try {
-      const userDateOfBirth: Date | null | undefined = user?.date_of_birth;
+      const userDateOfBirth = user.date_of_birth;
 
-      const formattedDateOfBirth: string | undefined =
-        userDateOfBirth instanceof Date
-          ? userDateOfBirth.toISOString().split("T")[0]
-          : undefined;
+      const formattedDateOfBirth = userDateOfBirth
+        ? !isNaN(new Date(userDateOfBirth).getTime())
+          ? new Date(userDateOfBirth).toISOString().split("T")[0]
+          : undefined
+        : undefined;
+
+      console.log("formattedDateOfBirth", formattedDateOfBirth);
 
       const requestBody: RegistrationData = {
         username: userName,
@@ -90,25 +99,36 @@ const AccountFinalStep = () => {
         clearUserData();
       } else if (registrationResult.code == 400) {
         const errorResponse = convertToErrorBadRequest(registrationResult);
-        toast.error(
-          `${errorResponse.message}: ${errorResponse.data.valuesInvalid.join(
-            ", "
-          )}`,
-          {
-            position: toast.POSITION.BOTTOM_LEFT,
-            className: "toast-message",
-          }
-        );
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: `${
+            errorResponse.message
+          }: ${errorResponse.data.valuesInvalid.join(", ")}`,
+          color: "white",
+          background: "#0B1218",
+          timer: 4500,
+        });
       } else {
-        toast.error("Ocurrió un error al intentar registrar los datos.", {
-          position: toast.POSITION.BOTTOM_LEFT,
-          className: "toast-message",
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text:
+            registrationResult.message ||
+            "Ocurrió un error al intentar registrar los datos.",
+          color: "white",
+          background: "#0B1218",
+          timer: 4500,
         });
       }
     } catch (error) {
-      toast.error("Ocurrió un error al intentar registrar los datos.", {
-        position: toast.POSITION.BOTTOM_LEFT,
-        className: "toast-message",
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Ocurrió un error al intentar registrar los datos2.",
+        color: "white",
+        background: "#0B1218",
+        timer: 4500,
       });
     }
   };
@@ -118,15 +138,13 @@ const AccountFinalStep = () => {
   };
 
   return (
-    <div className="bg-midnight text-white container-heigth">
-      <div className="container">
-        <div className="mt-20">
-          <TitleRegister
-            title=" Registrarme en "
-            description="Este nombre será tu identidad pública. Podrás cambiarlo una vez de manera gratuita."
-          />
-        </div>
-        <div className="items-center pt-4">
+    <div className="bg-midnight text-white min-h-screen flex items-center justify-center">
+      <div className="min-h-1/2 max-h-90vh w-full">
+        <TitleRegister
+          title=" Registrarme en "
+          description="Este nombre será tu identidad pública. Podrás cambiarlo una vez de manera gratuita."
+        />
+        <div className="items-center pt-4 container">
           <form className="mt-4 flex flex-col" onSubmit={handleFormSubmit}>
             <label htmlFor="usernameInput" className="mb-2">
               Usuario
@@ -156,8 +174,6 @@ const AccountFinalStep = () => {
               Volver
             </button>
           </form>
-
-          <ToastContainer />
         </div>
       </div>
     </div>

@@ -7,6 +7,10 @@ import "react-toastify/dist/ReactToastify.css";
 import { useRouter } from "next/navigation";
 import TitleRegister from "@/components/register/titleWow";
 import PageCounter from "@/components/register/pageCounter";
+import {
+  existEmail,
+  InformationModel,
+} from "@/components/services/apis/resources/register";
 
 const ContactMeans = () => {
   const { user, setUser } = useUserContext(); // Obteniendo el contexto y funciones del contexto
@@ -27,7 +31,7 @@ const ContactMeans = () => {
     return regex.test(email);
   };
 
-  const handleFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleFormSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     // Validaciones
@@ -46,7 +50,30 @@ const ContactMeans = () => {
       return;
     }
 
-    // Actualizar los datos del usuario en el contexto
+    try {
+      const response: InformationModel = await existEmail(email);
+
+      if (response.exist) {
+        toast.error(
+          "El correo electrónico ingresado ya está registrado. Por favor, ingrese otro correo electrónico.",
+          {
+            position: toast.POSITION.BOTTOM_LEFT,
+            className: "toast-message",
+          }
+        );
+        return;
+      }
+    } catch (error) {
+      toast.error(
+        "No fue posible validar su información, por favor intente nuevamente más tarde.",
+        {
+          position: toast.POSITION.BOTTOM_LEFT,
+          className: "toast-message",
+        }
+      );
+      return;
+    }
+
     if (user) {
       setUser({
         ...user,
@@ -69,16 +96,14 @@ const ContactMeans = () => {
   }, [setUser]);
 
   return (
-    <div className="bg-midnight text-white container-heigth">
-      <div className="container">
-        <div className="mt-20">
-          <TitleRegister
-            title=" Registrarme en "
-            description="Esto es lo que utilizarás cuando inicies sesión en los sitios web y aplicaciones móviles."
-          />
-        </div>
-        <div className="items-center pt-4">
-          <form className="mt-4 flex flex-col" onSubmit={handleFormSubmit}>
+    <div className="bg-midnight text-white min-h-screen flex items-center justify-center">
+      <div className="min-h-1/2 max-h-90vh w-full">
+        <TitleRegister
+          title=" Registrarme en "
+          description="Esto es lo que utilizarás cuando inicies sesión en los sitios web y aplicaciones móviles."
+        />
+        <div className="items-center pt-2 container">
+          <form className="mt-2 flex flex-col" onSubmit={handleFormSubmit}>
             <label htmlFor="lastNameInput" className="mb-2">
               Correo Electronico
             </label>

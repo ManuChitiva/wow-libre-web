@@ -4,6 +4,8 @@ import { GenericResponse } from "../../dto/generic";
 export interface CountryModel {
   value: string;
   label: string;
+  language: string;
+  site: string;
 }
 
 export const getCountry = async (): Promise<CountryModel[]> => {
@@ -20,12 +22,12 @@ export const getCountry = async (): Promise<CountryModel[]> => {
       return responseData.data;
     } else {
       const errorMessage = await response.text();
-      throw new Error(errorMessage || "Error al registrar los datos");
+      throw new Error("Error [{%s}]" + errorMessage);
     }
   } catch (error: any) {
-    console.error("Error:", error);
+    console.error("Error Message [{%s}]", error);
     throw new Error(
-      `Ocurrió un error al intentar registrar los datos: ${error.message}`
+      `It was not possible to obtain the available countries: ${error.message}`
     );
   }
 };
