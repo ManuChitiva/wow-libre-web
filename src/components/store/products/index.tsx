@@ -37,7 +37,7 @@ const Products = ({ products, category, description }: ProductsProps) => {
         {products.map((product) => (
           <Link key={product.id} href={`/product/${product.id}`}>
             <div
-              className="flex flex-col p-4 rounded-md shadow-md mb-4 relative"
+              className="flex flex-col p-4 rounded-md shadow-md mb-4 relative transition ease-out duration-200 transform hover:scale-105"
               style={{
                 backgroundColor: "#2d2f35",
                 maxHeight: "30rem",
